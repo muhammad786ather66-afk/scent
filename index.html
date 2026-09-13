@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELORA | Premium Fragrances</title>
+    <meta name="description" content="Discover VELORA — contemporary fragrances created for elegance, confidence, individuality, and unforgettable presence." />
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VELORA | Premium Fragrances" />
+    <meta property="og:description" content="Discover VELORA — contemporary fragrances created for elegance, confidence, individuality, and unforgettable presence." />
+    <meta property="og:url" content="https://velora.pages.dev/" />
+    <meta property="og:image" content="/assets/images/midnight.webp" />
+    
+    <!-- Twitter Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VELORA | Premium Fragrances" />
+    <meta name="twitter:description" content="Discover VELORA — contemporary fragrances created for elegance, confidence, individuality, and unforgettable presence." />
+    <meta name="twitter:image" content="/assets/images/midnight.webp" />
+    
+    <!-- Favicon & Canonical -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/velora-monogram.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="https://velora.pages.dev/" />
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="sr-only" style="position: absolute; left: -9999px; top: 0; padding: 1rem; background: #c5a059; color: #000; z-index: 9999;">Skip to main content</a>
+
+    <!-- SITE HEADER -->
+    <header class="site-header" id="site-header">
+      <div class="container header-inner">
+        <!-- Brand Logo -->
+        <a href="index.html" class="brand-logo" id="header-brand-logo" aria-label="VELORA Home">
+          <img src="/assets/logo/velora-monogram.png" alt="VELORA Monogram Logo" class="brand-logo-emblem" width="38" height="38" />
+          <div class="brand-logo-content">
+            <span class="brand-logo-text">VELORA</span>
+            <span class="brand-logo-tagline">Wear Your Presence.</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" aria-label="Primary Navigation">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="collection.html" class="nav-link">Collection</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="header-actions">
+          <a href="collection.html" class="btn btn-primary" style="display: none; padding: 0.65rem 1.4rem; font-size: 0.75rem;" id="header-shop-btn">
+            SHOP COLLECTION
+          </a>
+          <!-- Cart / Bag link -->
+          <a href="cart.html" class="cart-toggle-btn" id="header-cart-toggle" aria-label="View Shopping Bag">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-badge">0</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+        <li><a href="collection.html" class="mobile-nav-link">Collection</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About VELORA</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
+        <li><a href="cart.html" class="mobile-nav-link">Shopping Bag (<span class="cart-badge" style="position: static; display: inline-flex;">0</span>)</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-tagline">VELORA — Wear Your Presence.</p>
+        <a href="collection.html" class="btn btn-primary" style="width: 100%;">
+          SHOP COLLECTION
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">EAU DE PARFUM COLLECTION</div>
+            <h1 class="hero-title">VELORA</h1>
+            <p class="hero-tagline">Wear Your Presence.</p>
+            <p class="hero-desc">
+              Contemporary fragrances created to express confidence, character, and unforgettable presence.
+            </p>
+            <div class="hero-actions btn-group">
+              <a href="collection.html" class="btn btn-primary" id="hero-primary-cta">
+                SHOP COLLECTION
+              </a>
+              <a href="about.html" class="btn btn-secondary" id="hero-secondary-cta">
+                DISCOVER VELORA
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-image-wrapper">
+              <img src="/assets/images/midnight.webp" 
+                   alt="VELORA Midnight Eau de Parfum 50 ML" 
+                   class="hero-img" 
+                   loading="eager" 
+                   fetchpriority="high"
+                   decoding="async"
+                   onerror="this.onerror=null; this.src='/assets/images/midnight.svg';" />
+              <div class="image-cart-overlay">
+                <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="midnight" aria-label="Order Midnight Now">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                  Cart / Order Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED COLLECTION -->
+      <section class="section" id="collection" style="background-color: var(--color-bg-surface);">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-eyebrow">The Fragrance House</span>
+            <h2>Current Fragrance Collection</h2>
+            <div class="gold-separator"></div>
+            <p class="section-subtitle">
+              Four distinctive creations formulated at Eau de Parfum concentration in 50 ML signature vessels.
+            </p>
+          </div>
+
+          <!-- Filter Navigation -->
+          <div class="collection-filter-nav" role="tablist" aria-label="Fragrance Filter">
+            <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">ALL</button>
+            <button type="button" class="filter-btn" data-filter="midnight" role="tab" aria-selected="false">MIDNIGHT</button>
+            <button type="button" class="filter-btn" data-filter="silver-storm" role="tab" aria-selected="false">SILVER STORM</button>
+            <button type="button" class="filter-btn" data-filter="royal-dusk" role="tab" aria-selected="false">ROYAL DUSK</button>
+            <button type="button" class="filter-btn" data-filter="noir-vanilla" role="tab" aria-selected="false">NOIR VANILLA</button>
+          </div>
+
+          <!-- Dynamic Products Grid -->
+          <div class="product-grid" id="dynamic-product-grid">
+            <!-- Rendered dynamically by js/main.js from products.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT VELORA HIGHLIGHT -->
+      <section class="section" id="about-velora">
+        <div class="container">
+          <div class="about-box">
+            <span class="section-eyebrow">About the House</span>
+            <h2 class="about-quote-headline">A fragrance that becomes your signature.</h2>
+            <div class="gold-separator-left"></div>
+            <p class="about-text">
+              VELORA is a contemporary fragrance house inspired by elegance, confidence, and the art of leaving a lasting impression.
+            </p>
+            <p class="about-text">
+              Our fragrances are created for those who see scent as an expression of identity — from the mysterious depth of Midnight, to the electric freshness of Silver Storm, the refined character of Royal Dusk, and the sensual warmth of Noir Vanilla.
+            </p>
+            <p class="about-text">
+              Every VELORA fragrance is designed to complement your presence, evoke emotion, and become part of the moments you remember.
+            </p>
+            <p class="about-signoff">VELORA — Wear Your Presence.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITORIAL FOUR FRAGRANCES SECTION -->
+      <section class="section" id="editorial" style="background-color: var(--color-bg-surface);">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-eyebrow">Fragrance Profiles</span>
+            <h2>Four Signatures of Presence</h2>
+            <div class="gold-separator"></div>
+            <p class="section-subtitle">
+              Each creation has been designed to convey a distinct emotional posture and timeless aura.
+            </p>
+          </div>
+
+          <div class="editorial-list">
+            <!-- 1. MIDNIGHT -->
+            <article class="editorial-item" id="editorial-midnight">
+              <div class="editorial-visual">
+                <img src="/assets/images/midnight.webp" 
+                     alt="VELORA Midnight Eau de Parfum 50 ML" 
+                     class="editorial-visual-img" 
+                     loading="lazy" 
+                     decoding="async" 
+                     onerror="this.onerror=null; this.src='/assets/images/midnight.svg';" />
+                <div class="image-cart-overlay">
+                  <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="midnight" aria-label="Order Midnight Now">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Cart / Order Now
+                  </button>
+                </div>
+              </div>
+              <div class="editorial-info">
+                <div class="editorial-tag">Signature Fragrance 01</div>
+                <h3 class="editorial-name">MIDNIGHT by VELORA</h3>
+                <p class="editorial-specs">EAU DE PARFUM &bull; 50 ML</p>
+                <div class="gold-separator-left"></div>
+                <blockquote class="editorial-quote">
+                  "Deep, mysterious, and sophisticated — a fragrance created for the moments when the night takes over."
+                </blockquote>
+                <div class="editorial-character-pills">
+                  <span class="character-pill">Mysterious Character</span>
+                  <span class="character-pill">Nocturnal Allure</span>
+                  <span class="character-pill">High Projection</span>
+                </div>
+                <div class="btn-group">
+                  <a href="product.html?product=midnight" class="btn btn-gold-outline">VIEW FRAGRANCE</a>
+                  <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="midnight">Cart / Order Now</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. SILVER STORM -->
+            <article class="editorial-item" id="editorial-silver-storm">
+              <div class="editorial-visual">
+                <img src="/assets/images/silver-storm.webp" 
+                     alt="VELORA Silver Storm Eau de Parfum 50 ML" 
+                     class="editorial-visual-img" 
+                     loading="lazy" 
+                     decoding="async" 
+                     onerror="this.onerror=null; this.src='/assets/images/silver-storm.svg';" />
+                <div class="image-cart-overlay">
+                  <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="silver-storm" aria-label="Order Silver Storm Now">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Cart / Order Now
+                  </button>
+                </div>
+              </div>
+              <div class="editorial-info">
+                <div class="editorial-tag">Signature Fragrance 02</div>
+                <h3 class="editorial-name">SILVER STORM by VELORA</h3>
+                <p class="editorial-specs">EAU DE PARFUM &bull; 50 ML</p>
+                <div class="gold-separator-left"></div>
+                <blockquote class="editorial-quote">
+                  "Fresh, energetic, and striking — a modern expression of confidence and adventure."
+                </blockquote>
+                <div class="editorial-character-pills">
+                  <span class="character-pill">Dynamic Energy</span>
+                  <span class="character-pill">Crisp Confidence</span>
+                  <span class="character-pill">Signature Sillage</span>
+                </div>
+                <div class="btn-group">
+                  <a href="product.html?product=silver-storm" class="btn btn-gold-outline">VIEW FRAGRANCE</a>
+                  <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="silver-storm">Cart / Order Now</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 3. ROYAL DUSK -->
+            <article class="editorial-item" id="editorial-royal-dusk">
+              <div class="editorial-visual">
+                <img src="/assets/images/royal-dusk.webp" 
+                     alt="VELORA Royal Dusk Eau de Parfum 50 ML" 
+                     class="editorial-visual-img" 
+                     loading="lazy" 
+                     decoding="async" 
+                     onerror="this.onerror=null; this.src='/assets/images/royal-dusk.svg';" />
+                <div class="image-cart-overlay">
+                  <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="royal-dusk" aria-label="Order Royal Dusk Now">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Cart / Order Now
+                  </button>
+                </div>
+              </div>
+              <div class="editorial-info">
+                <div class="editorial-tag">Signature Fragrance 03</div>
+                <h3 class="editorial-name">ROYAL DUSK by VELORA</h3>
+                <p class="editorial-specs">EAU DE PARFUM &bull; 50 ML</p>
+                <div class="gold-separator-left"></div>
+                <blockquote class="editorial-quote">
+                  "Refined and mysterious, inspired by the quiet sophistication of twilight."
+                </blockquote>
+                <div class="editorial-character-pills">
+                  <span class="character-pill">Quiet Sophistication</span>
+                  <span class="character-pill">Twilight Serenity</span>
+                  <span class="character-pill">Refined Depth</span>
+                </div>
+                <div class="btn-group">
+                  <a href="product.html?product=royal-dusk" class="btn btn-gold-outline">VIEW FRAGRANCE</a>
+                  <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="royal-dusk">Cart / Order Now</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4. NOIR VANILLA -->
+            <article class="editorial-item" id="editorial-noir-vanilla">
+              <div class="editorial-visual">
+                <img src="/assets/images/noir-vanilla.webp" 
+                     alt="VELORA Noir Vanilla Eau de Parfum 50 ML" 
+                     class="editorial-visual-img" 
+                     loading="lazy" 
+                     decoding="async" 
+                     onerror="this.onerror=null; this.src='/assets/images/noir-vanilla.svg';" />
+                <div class="image-cart-overlay">
+                  <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="noir-vanilla" aria-label="Order Noir Vanilla Now">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Cart / Order Now
+                  </button>
+                </div>
+              </div>
+              <div class="editorial-info">
+                <div class="editorial-tag">Signature Fragrance 04</div>
+                <h3 class="editorial-name">NOIR VANILLA by VELORA</h3>
+                <p class="editorial-specs">EAU DE PARFUM &bull; 50 ML</p>
+                <div class="gold-separator-left"></div>
+                <blockquote class="editorial-quote">
+                  "Warm, sensual, and captivating, blending the richness of vanilla with a darker character."
+                </blockquote>
+                <div class="editorial-character-pills">
+                  <span class="character-pill">Dark Warmth</span>
+                  <span class="character-pill">Sensual Intimacy</span>
+                  <span class="character-pill">Captivating Resonance</span>
+                </div>
+                <div class="btn-group">
+                  <a href="product.html?product=noir-vanilla" class="btn btn-gold-outline">VIEW FRAGRANCE</a>
+                  <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="noir-vanilla">Cart / Order Now</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY VELORA (4 FEATURE BLOCKS) -->
+      <section class="section" id="why-velora">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-eyebrow">The Principles</span>
+            <h2>Why VELORA</h2>
+            <div class="gold-separator"></div>
+            <p class="section-subtitle">
+              Every detail is shaped with singular intention: to elevate the presence you bring into every room.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <!-- Block 1 -->
+            <div class="feature-block">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 3a9 9 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">DISTINCTIVE FRAGRANCES</h3>
+              <p class="feature-desc">Scents designed to express different moods, characters and moments.</p>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="feature-block">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="feature-title">ELEGANT PRESENTATION</h3>
+              <p class="feature-desc">Luxury-inspired presentation designed to make every bottle feel special.</p>
+            </div>
+
+            <!-- Block 3 -->
+            <div class="feature-block">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <h3 class="feature-title">YOUR SIGNATURE</h3>
+              <p class="feature-desc">Fragrances created to complement the presence you bring into every room.</p>
+            </div>
+
+            <!-- Block 4 -->
+            <div class="feature-block">
+              <div class="feature-icon-wrapper" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">MADE TO BE REMEMBERED</h3>
+              <p class="feature-desc">A scent can disappear from the air while remaining in memory.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRAND STORY STATEMENT -->
+      <section class="section section-tight" id="brand-story" style="background-color: var(--color-bg-surface);">
+        <div class="container text-center" style="max-width: 860px; margin: 0 auto;">
+          <span class="section-eyebrow">Brand Philosophy</span>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 1.25rem;">
+            A fragrance is more than a scent.
+          </h2>
+          <p style="margin: 0 auto 2.5rem; font-size: 1.15rem; color: #cfd0d8;">
+            It becomes part of who you are, how you carry yourself, and how others remember you.
+          </p>
+
+          <div class="story-grid">
+            <div class="story-card">
+              <div class="story-card-number">PART I</div>
+              <div class="story-card-label">Your identity.</div>
+            </div>
+            <div class="story-card">
+              <div class="story-card-number">PART II</div>
+              <div class="story-card-label">Your confidence.</div>
+            </div>
+            <div class="story-card">
+              <div class="story-card-number">PART III</div>
+              <div class="story-card-label">Your memories.</div>
+            </div>
+            <div class="story-card">
+              <div class="story-card-number">PART IV</div>
+              <div class="story-card-label">Your presence.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CINEMATIC CTA -->
+      <section class="section" id="cta-section">
+        <div class="container">
+          <div class="cta-banner">
+            <span class="section-eyebrow">Discover Your Scent</span>
+            <h2 class="cta-title">Find the fragrance that becomes part of your presence.</h2>
+            <p class="cta-subtitle">
+              Explore the four Eau de Parfum expressions of VELORA.
+            </p>
+            <a href="collection.html" class="btn btn-primary" style="padding: 1rem 2.75rem;">
+              EXPLORE VELORA
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Brand Column -->
+          <div class="footer-brand">
+            <div class="footer-brand-header">
+              <img src="/assets/logo/velora-monogram.png" alt="VELORA Monogram Logo" class="footer-logo-emblem" width="48" height="48" />
+              <div>
+                <span class="footer-logo">VELORA</span>
+                <span class="footer-tagline">Wear Your Presence.</span>
+              </div>
+            </div>
+            <p class="footer-desc">
+              Contemporary fragrance house inspired by elegance, confidence, and the art of leaving an unforgettable presence.
+            </p>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <h4 class="footer-col-title">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="collection.html" class="footer-link">Collection</a></li>
+              <li><a href="about.html" class="footer-link">About</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+              <li><a href="faq.html" class="footer-link">FAQ</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h4 class="footer-col-title">Legal</h4>
+            <ul class="footer-links">
+              <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+              <li><a href="terms.html" class="footer-link">Terms & Conditions</a></li>
+            </ul>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <h4 class="footer-col-title">Connect</h4>
+            <ul class="footer-links">
+              <li><a href="#" class="footer-link" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="#" class="footer-link" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="#" class="footer-link" rel="noopener noreferrer">TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 VELORA. All rights reserved.</p>
+          <p style="letter-spacing: 0.1em;">WEAR YOUR PRESENCE.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FUTURE ECOMMERCE ORDER NOTIFICATION MODAL -->
+    <div class="velora-modal-backdrop" id="order-notice-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+      <div class="velora-modal-box">
+        <button type="button" class="velora-modal-close" aria-label="Close dialog">&times;</button>
+        <div style="width: 52px; height: 52px; border: 1px solid var(--color-gold); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-gold);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <span class="section-eyebrow" id="modal-product-name">VELORA FRAGRANCE</span>
+        <h3 id="modal-heading" style="margin-bottom: 1rem; font-size: 1.4rem;">Online ordering will be available soon.</h3>
+        <p style="color: #cfd0d8; font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.6;">
+          Our digital boutique is preparing for national launch. For direct bespoke orders, boutique inquiries, or VIP reservations, please contact our team.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <a href="contact.html" class="btn btn-primary" style="width: 100%;">CONTACT CONCIERGE</a>
+          <button type="button" class="btn btn-secondary modal-dismiss-btn" style="width: 100%;">CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/products.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
