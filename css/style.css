@@ -1070,6 +1070,280 @@ button, input, textarea, select {
   letter-spacing: 0.04em;
 }
 
+/* Haute Parfumerie Atelier Narrative */
+.about-narrative-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 900px) {
+  .about-narrative-split {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.about-visual-frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  background: #0b0c10;
+}
+
+.about-visual-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.about-visual-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.about-visual-frame:hover .about-visual-img {
+  transform: scale(1.03);
+}
+
+.about-visual-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(0deg, rgba(8, 9, 13, 0.95) 0%, transparent 100%);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Noble Raw Materials Grid */
+.noble-ingredients-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 600px) {
+  .noble-ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .noble-ingredients-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.noble-ingredient-card {
+  background: linear-gradient(180deg, rgba(21, 24, 36, 0.4) 0%, rgba(11, 12, 16, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 1.75rem 1.4rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.noble-ingredient-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.noble-ingredient-card:hover {
+  border-color: rgba(197, 160, 89, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.noble-ingredient-card:hover::before {
+  opacity: 1;
+}
+
+.noble-ingredient-origin {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.noble-ingredient-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.65rem;
+}
+
+.noble-ingredient-desc {
+  font-size: 0.86rem;
+  color: #a1a1aa;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Signature Creations Grid in About Page */
+.about-creations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .about-creations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-creations-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.about-creation-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-creation-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.about-creation-thumb {
+  position: relative;
+  background: #0d0f17;
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-creation-thumb img {
+  width: 130px;
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.6));
+  transition: transform var(--transition-fast);
+}
+
+.about-creation-card:hover .about-creation-thumb img {
+  transform: scale(1.05);
+}
+
+.about-creation-body {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.about-creation-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.25rem;
+}
+
+.about-creation-character {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.about-creation-notes {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.about-creation-link {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  transition: color var(--transition-fast);
+}
+
+.about-creation-link:hover {
+  color: var(--color-gold-light);
+}
+
+/* Sculptural Vessel Architectural Box */
+.vessel-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 600px) {
+  .vessel-specs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.vessel-spec-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border-subtle);
+  padding: 1.25rem;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.vessel-spec-value {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-gold);
+  margin-bottom: 0.25rem;
+}
+
+.vessel-spec-label {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+
 /* Why Velora Feature Grid */
 .features-grid {
   display: grid;
@@ -1309,8 +1583,161 @@ button, input, textarea, select {
 }
 
 /* ==========================================================================
-   CONTACT FORM & DETAILS
+   CONTACT FORM & LUXURY CONCIERGE
    ========================================================================== */
+.concierge-hero-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (min-width: 768px) {
+  .concierge-hero-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.concierge-hero-card {
+  background: linear-gradient(135deg, rgba(21, 24, 36, 0.5) 0%, rgba(11, 12, 16, 0.85) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  border-radius: 4px;
+  padding: 1.75rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.concierge-hero-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(197, 160, 89, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.concierge-hero-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.1);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  margin-bottom: 1.15rem;
+  flex-shrink: 0;
+}
+
+.concierge-hero-title {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.45rem;
+}
+
+.concierge-hero-desc {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.concierge-hero-action {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--transition-fast);
+}
+
+.concierge-hero-action:hover {
+  color: var(--color-gold-light);
+}
+
+.whatsapp-direct-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #25d366;
+  padding: 0.85rem 1.35rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.whatsapp-direct-btn:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border-color: #25d366;
+  transform: translateY(-2px);
+  color: #4ade80;
+}
+
+.contact-service-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-service-item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.contact-service-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}
+
+.contact-service-title {
+  font-size: 0.92rem;
+  color: var(--color-ivory);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.contact-service-desc {
+  font-size: 0.84rem;
+  color: #9ca3af;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .form-row-2col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1613,25 +2040,146 @@ button, input, textarea, select {
 /* ==========================================================================
    FOOTER
    ========================================================================== */
+/* ==========================================================================
+   FOOTER (HAUTE PARFUMERIE SPECIFICATION)
+   ========================================================================== */
 .site-footer {
-  background-color: #050608;
+  background: radial-gradient(circle at 50% 0%, #0c0e14 0%, #050608 100%);
   border-top: 1px solid var(--color-border);
-  padding-top: clamp(4rem, 7vw, 6rem);
+  padding-top: clamp(3rem, 6vw, 5rem);
   padding-bottom: 2.5rem;
   margin-top: auto;
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(197, 160, 89, 0.4) 50%, transparent 100%);
+}
+
+/* Footer VIP Concierge Newsletter Banner */
+.footer-newsletter-box {
+  background: linear-gradient(135deg, rgba(21, 24, 36, 0.7) 0%, rgba(11, 12, 16, 0.9) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  border-radius: 4px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 900px) {
+  .footer-newsletter-box {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.footer-newsletter-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.footer-newsletter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  color: var(--color-ivory);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-newsletter-desc {
+  font-size: 0.88rem;
+  color: #a1a1aa;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.footer-newsletter-form {
+  width: 100%;
+}
+
+.footer-newsletter-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 480px) {
+  .footer-newsletter-input-wrap {
+    flex-direction: row;
+  }
+}
+
+.footer-newsletter-input {
+  flex: 1;
+  background: #08090d;
+  border: 1px solid var(--color-border);
+  color: var(--color-ivory);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  border-radius: 2px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.footer-newsletter-input:focus {
+  border-color: var(--color-gold);
+  background: #11131a;
+  outline: none;
+}
+
+.footer-newsletter-btn {
+  padding: 0.85rem 1.6rem !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.14em !important;
+  white-space: nowrap !important;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.newsletter-success-msg {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--color-gold-light);
+  background: rgba(197, 160, 89, 0.1);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  padding: 0.75rem 1.25rem;
+  border-radius: 2px;
+  line-height: 1.4;
 }
 
 .footer-top {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
-  padding-bottom: 3.5rem;
-  border-bottom: 1px solid var(--color-border-subtle);
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .footer-top {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1.6fr 1fr 1fr 1.1fr;
+    gap: 3.5rem;
   }
 }
 
@@ -1648,8 +2196,8 @@ button, input, textarea, select {
 }
 
 .footer-logo-emblem {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
   flex-shrink: 0;
@@ -1661,32 +2209,83 @@ button, input, textarea, select {
   letter-spacing: 0.28em;
   color: var(--color-ivory);
   text-transform: uppercase;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
   display: block;
 }
 
 .footer-tagline {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.22em;
   color: var(--color-gold);
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
+  display: block;
 }
 
 .footer-desc {
-  font-size: 0.9rem;
-  color: var(--color-subtle);
+  font-size: 0.88rem;
+  color: #a1a1aa;
   line-height: 1.65;
-  max-width: 34ch;
+  max-width: 36ch;
+  margin-top: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-contact-snippet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.footer-contact-email {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.84rem;
+  color: var(--color-gold);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact-email:hover {
+  color: var(--color-gold-light);
+  text-decoration: underline;
+}
+
+.footer-badge-cod {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d1d1d8;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  width: fit-content;
 }
 
 .footer-col-title {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-ivory);
-  margin-bottom: 1.25rem;
-  font-weight: 600;
+  margin-bottom: 1.35rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 18px;
+  height: 1px;
+  background: var(--color-gold);
 }
 
 .footer-links {
@@ -1694,16 +2293,67 @@ button, input, textarea, select {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-link {
-  font-size: 0.875rem;
-  color: #a1a1aa;
-  transition: color var(--transition-fast);
+  font-size: 0.86rem;
+  color: #9496a1;
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer-link:hover {
   color: var(--color-gold-light);
+  transform: translateX(3px);
+}
+
+/* Quick Navigation Strip (Home, Collection, About, Contact, Privacy, Terms) */
+.footer-nav-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.footer-nav-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-quick-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem 0.85rem;
+}
+
+.footer-quick-links a {
+  font-size: 0.82rem;
+  color: #b4b5be;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
+}
+
+.footer-quick-links a:hover {
+  color: var(--color-gold);
+}
+
+.footer-nav-dot {
+  color: rgba(197, 160, 89, 0.4);
+  font-size: 0.75rem;
 }
 
 .footer-bottom {
@@ -1711,16 +2361,44 @@ button, input, textarea, select {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
-  padding-top: 2rem;
-  font-size: 0.8125rem;
-  color: var(--color-subtle);
+  gap: 1rem;
+  padding-top: 1.75rem;
+  font-size: 0.8rem;
+  color: #71717a;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 860px) {
   .footer-bottom {
     flex-direction: row;
+    text-align: left;
   }
+}
+
+.footer-copy {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer-cod-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d4d4d8;
+  background: rgba(197, 160, 89, 0.08);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+}
+
+.footer-motto {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
+  font-weight: 600;
 }
 
 /* ==========================================================================

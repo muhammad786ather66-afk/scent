@@ -229,78 +229,111 @@
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">
+        <!-- VIP Concierge Newsletter Banner -->
+        <div class="footer-newsletter-box">
+          <div class="footer-newsletter-content">
+            <span class="footer-newsletter-kicker">THE VELORA DISPATCH</span>
+            <h3 class="footer-newsletter-title">Subscribe to Private Atelier Previews</h3>
+            <p class="footer-newsletter-desc">Receive exclusive notifications on rare batch extractions, private olfactory launches, and concierge privileges.</p>
+          </div>
+          <form class="footer-newsletter-form" id="footer-newsletter-form" onsubmit="event.preventDefault(); this.innerHTML = '<span class=\'newsletter-success-msg\'><svg width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'var(--color-gold)\' stroke-width=\'2\' style=\'vertical-align: middle; margin-right: 6px;\'><polyline points=\'20 6 9 17 4 12\'></polyline></svg>Welcome to the VELORA Circle. Your invitation is recorded.</span>';">
+            <div class="footer-newsletter-input-wrap">
+              <input type="email" class="footer-newsletter-input" placeholder="Enter your email address" required aria-label="Email address for private dispatch" />
+              <button type="submit" class="btn btn-primary footer-newsletter-btn">SUBSCRIBE</button>
+            </div>
+          </form>
+        </div>
+
         <div class="footer-top">
+          <!-- Brand Column -->
           <div class="footer-brand">
             <div class="footer-brand-header">
-              <img src="/assets/logo/velora-monogram.png" alt="VELORA Monogram Logo" class="footer-logo-emblem" width="48" height="48" />
+              <img src="/assets/logo/velora-monogram.png" alt="VELORA Monogram Logo" class="footer-logo-emblem" width="46" height="46" />
               <div>
                 <span class="footer-logo">VELORA</span>
                 <span class="footer-tagline">Wear Your Presence.</span>
               </div>
             </div>
             <p class="footer-desc">
-              Contemporary fragrance house inspired by elegance, confidence, and the art of leaving an unforgettable presence.
+              Contemporary fragrance house inspired by elegance, confidence, and the art of leaving an unforgettable presence. Handcrafted in high-concentration Eau de Parfum formulations.
             </p>
+            <div class="footer-contact-snippet">
+              <a href="mailto:hello@velorafragrances.com" class="footer-contact-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                hello@velorafragrances.com
+              </a>
+              <span class="footer-badge-cod">Nationwide Cash on Delivery</span>
+            </div>
           </div>
 
+          <!-- Navigation -->
           <div>
             <h4 class="footer-col-title">Navigation</h4>
             <ul class="footer-links">
               <li><a href="index.html" class="footer-link">Home</a></li>
-              <li><a href="collection.html" class="footer-link">Collection</a></li>
-              <li><a href="about.html" class="footer-link">About</a></li>
-              <li><a href="contact.html" class="footer-link">Contact</a></li>
-              <li><a href="faq.html" class="footer-link">FAQ</a></li>
+              <li><a href="collection.html" class="footer-link">Fragrance Collection</a></li>
+              <li><a href="about.html" class="footer-link">About the House</a></li>
+              <li><a href="contact.html" class="footer-link">Client Concierge</a></li>
+              <li><a href="cart.html" class="footer-link">Shopping Bag</a></li>
+              <li><a href="checkout.html" class="footer-link">Cash on Delivery Checkout</a></li>
             </ul>
           </div>
 
+          <!-- Olfactory Signatures -->
           <div>
-            <h4 class="footer-col-title">Legal</h4>
+            <h4 class="footer-col-title">Signatures</h4>
             <ul class="footer-links">
+              <li><a href="product.html?id=midnight" class="footer-link">Midnight (50 ML)</a></li>
+              <li><a href="product.html?id=royal-dusk" class="footer-link">Royal Dusk (50 ML)</a></li>
+              <li><a href="product.html?id=silver-storm" class="footer-link">Silver Storm (50 ML)</a></li>
+              <li><a href="product.html?id=noir-vanilla" class="footer-link">Noir Vanilla (50 ML)</a></li>
+              <li><a href="collection.html" class="footer-link">Olfactory Discovery</a></li>
+            </ul>
+          </div>
+
+          <!-- Client Services & Legal -->
+          <div>
+            <h4 class="footer-col-title">Client Services</h4>
+            <ul class="footer-links">
+              <li><a href="faq.html" class="footer-link">Frequently Asked Questions</a></li>
+              <li><a href="contact.html" class="footer-link">Scent Advisory & Concierge</a></li>
               <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
               <li><a href="terms.html" class="footer-link">Terms & Conditions</a></li>
+              <li><a href="faq.html#shipping" class="footer-link">Shipping & Delivery Info</a></li>
             </ul>
           </div>
+        </div>
 
-          <div>
-            <h4 class="footer-col-title">Connect</h4>
-            <ul class="footer-links">
-              <li><a href="#" class="footer-link" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="#" class="footer-link" rel="noopener noreferrer">Facebook</a></li>
-              <li><a href="#" class="footer-link" rel="noopener noreferrer">TikTok</a></li>
-            </ul>
-          </div>
+        <!-- Quick Nav Strip -->
+        <div class="footer-nav-strip">
+          <span class="footer-nav-label">QUICK NAVIGATION:</span>
+          <nav class="footer-quick-links" aria-label="Footer Quick Navigation">
+            <a href="index.html">Home</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="collection.html">Collection</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="about.html">About</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="contact.html">Contact</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="faq.html">FAQ</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="privacy.html">Privacy Policy</a>
+            <span class="footer-nav-dot">&bull;</span>
+            <a href="terms.html">Terms & Conditions</a>
+          </nav>
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; 2026 VELORA. All rights reserved.</p>
-          <p style="letter-spacing: 0.1em;">WEAR YOUR PRESENCE.</p>
+          <p class="footer-copy">&copy; 2026 VELORA. All rights reserved. Registered Fragrance Atelier.</p>
+          <div class="footer-cod-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" style="vertical-align: middle; margin-right: 5px;"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="14" y1="12" x2="18" y2="12"></line></svg>
+            Cash on Delivery • Free Nationwide Shipping
+          </div>
+          <p class="footer-motto">WEAR YOUR PRESENCE.</p>
         </div>
       </div>
     </footer>
-
-    <!-- ORDER NOTIFICATION MODAL -->
-    <div class="velora-modal-backdrop" id="order-notice-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
-      <div class="velora-modal-box">
-        <button type="button" class="velora-modal-close" aria-label="Close dialog">&times;</button>
-        <div style="width: 52px; height: 52px; border: 1px solid var(--color-gold); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-gold);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-        </div>
-        <span class="section-eyebrow" id="modal-product-name">VELORA FRAGRANCE</span>
-        <h3 id="modal-heading" style="margin-bottom: 1rem; font-size: 1.4rem;">Online ordering will be available soon.</h3>
-        <p style="color: #cfd0d8; font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.6;">
-          Our digital boutique is preparing for national launch. For direct bespoke orders, boutique inquiries, or VIP reservations, please contact our team.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-          <a href="contact.html" class="btn btn-primary" style="width: 100%;">CONTACT CONCIERGE</a>
-          <button type="button" class="btn btn-secondary modal-dismiss-btn" style="width: 100%;">CLOSE</button>
-        </div>
-      </div>
-    </div>
 
     <!-- Scripts -->
     <script src="/js/products.js"></script>
