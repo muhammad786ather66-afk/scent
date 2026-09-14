@@ -221,6 +221,16 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="cust-whatsapp" class="form-label">WhatsApp Number <span class="required-star">*</span></label>
+                    <input type="tel" id="cust-whatsapp" name="whatsapp" class="form-input" placeholder="e.g. 0300 1234567 or +92 300 1234567" required />
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                      <span class="form-hint" style="margin: 0;">For instant order updates, dispatch notifications, and courier tracking on WhatsApp.</span>
+                      <button type="button" id="btn-copy-phone-to-wa" style="background: transparent; border: none; color: var(--color-gold); font-size: 0.72rem; letter-spacing: 0.05em; cursor: pointer; text-decoration: underline; padding: 0;">Same as mobile number</button>
+                    </div>
+                    <span class="field-error-msg" id="cust-whatsapp-error"></span>
+                  </div>
+
+                  <div class="form-group">
                     <label for="cust-city" class="form-label">City / Region <span class="required-star">*</span></label>
                     <input type="text" id="cust-city" name="city" class="form-input" placeholder="e.g. Karachi, Lahore, Islamabad, etc." required autocomplete="address-level2" />
                     <span class="field-error-msg" id="cust-city-error"></span>
@@ -254,8 +264,21 @@
                   </div>
 
                   <div class="form-submit-row">
-                    <button type="submit" class="btn btn-primary btn-place-order" id="btn-submit-order">
-                      PLACE ORDER (CASH ON DELIVERY)
+                    <button type="submit" class="btn-place-order" id="btn-submit-order" aria-label="Confirm and place cash on delivery order">
+                      <span class="btn-place-order-content">
+                        <span class="btn-place-order-main">
+                          <svg class="btn-order-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                          </svg>
+                          <span class="btn-order-title">PLACE ORDER</span>
+                        </span>
+                        <span class="btn-order-badge">CASH ON DELIVERY</span>
+                      </span>
+                      <svg class="btn-order-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
                     </button>
                     <p class="checkout-privacy-note">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;">
@@ -295,6 +318,10 @@
               <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
                 <span style="color: #9ca3af; font-size: 0.88rem;">Customer Name</span>
                 <strong id="success-customer-name" style="color: #ffffff; font-size: 0.88rem;">-</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                <span style="color: #9ca3af; font-size: 0.88rem;">WhatsApp Contact</span>
+                <strong id="success-customer-whatsapp" style="color: #4ade80; font-size: 0.88rem;">-</strong>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
                 <span style="color: #9ca3af; font-size: 0.88rem;">Delivery Address</span>

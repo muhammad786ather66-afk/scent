@@ -35,6 +35,22 @@ const WHATSAPP_NUMBER = "";
     if (checkoutForm) {
       checkoutForm.addEventListener('submit', handleOrderSubmission);
     }
+
+    // "Same as mobile number" helper button
+    const copyWaBtn = document.getElementById('btn-copy-phone-to-wa');
+    const phoneInput = document.getElementById('cust-phone');
+    const whatsappInput = document.getElementById('cust-whatsapp');
+    if (copyWaBtn && phoneInput && whatsappInput) {
+      copyWaBtn.addEventListener('click', () => {
+        whatsappInput.value = phoneInput.value;
+        whatsappInput.classList.remove('input-error');
+        const err = document.getElementById('cust-whatsapp-error');
+        if (err) {
+          err.textContent = '';
+          err.style.display = 'none';
+        }
+      });
+    }
   }
 
   /**
@@ -136,12 +152,14 @@ const WHATSAPP_NUMBER = "";
     // Extract customer information
     const nameInput = document.getElementById('cust-name');
     const phoneInput = document.getElementById('cust-phone');
+    const whatsappInput = document.getElementById('cust-whatsapp');
     const cityInput = document.getElementById('cust-city');
     const addressInput = document.getElementById('cust-address');
     const noteInput = document.getElementById('cust-notes');
 
     const name = nameInput ? nameInput.value.trim() : '';
     const phone = phoneInput ? phoneInput.value.trim() : '';
+    const whatsapp = whatsappInput ? whatsappInput.value.trim() : '';
     const city = cityInput ? cityInput.value.trim() : '';
     const address = addressInput ? addressInput.value.trim() : '';
     const note = noteInput ? noteInput.value.trim() : '';
@@ -176,10 +194,25 @@ const WHATSAPP_NUMBER = "";
     const phoneValid = cleanPhoneDigits.length >= 9 && cleanPhoneDigits.length <= 16;
     validateField(phoneInput, phoneValid, "Please enter a valid mobile phone number (e.g. 0300 1234567).");
 
+    // Validate WhatsApp: minimum 9 characters
+    const cleanWaDigits = whatsapp.replace(/[^0-9]/g, '');
+    const waValid = cleanWaDigits.length >= 9 && cleanWaDigits.length <= 16;
+    validateField(whatsappInput, waValid, "Please enter a valid WhatsApp number for order coordination.");
+
     validateField(cityInput, city.length >= 2, "Please provide your delivery city.");
     validateField(addressInput, address.length >= 8, "Please enter your complete physical street address for courier delivery.");
 
     if (hasError) return;
+
+    // Visual button feedback during submission
+    const submitBtn = document.getElementById('btn-submit-order');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.8';
+      submitBtn.style.pointerEvents = 'none';
+      const titleSpan = submitBtn.querySelector('.btn-order-title');
+      if (titleSpan) titleSpan.textContent = 'CONFIRMING ORDER...';
+    }
 
     // Generate Unique Order Reference
     const orderRef = '#VL-' + Math.floor(100000 + Math.random() * 900000);
@@ -192,6 +225,7 @@ Order Reference: ${orderRef}
 CUSTOMER DETAILS:
 Name: ${name}
 Phone: ${phone}
+WhatsApp: ${whatsapp}
 City: ${city}
 Address: ${address}
 Order Note: ${note || 'None'}
@@ -217,6 +251,7 @@ Shipping: Free Nationwide Delivery`;
           OrderID: orderRef,
           Customer_Name: name,
           Phone: phone,
+          WhatsApp: whatsapp,
           City: city,
           Delivery_Address: address,
           Order_Note: note || 'None',
@@ -234,12 +269,14 @@ Shipping: Free Nationwide Delivery`;
     const successGreeting = document.getElementById('success-customer-greeting');
     const successOrderNumber = document.getElementById('success-order-number');
     const successCustomerName = document.getElementById('success-customer-name');
+    const successCustomerWhatsapp = document.getElementById('success-customer-whatsapp');
     const successDeliveryAddress = document.getElementById('success-delivery-address');
     const successTotalPrice = document.getElementById('success-total-price');
 
     if (successGreeting) successGreeting.textContent = `Thank you, ${name}! Your order has been placed.`;
     if (successOrderNumber) successOrderNumber.textContent = orderRef;
     if (successCustomerName) successCustomerName.textContent = `${name} • ${phone}`;
+    if (successCustomerWhatsapp) successCustomerWhatsapp.textContent = whatsapp;
     if (successDeliveryAddress) successDeliveryAddress.textContent = `${address}, ${city}`;
     if (successTotalPrice) successTotalPrice.textContent = summary.totalDisplay;
 
