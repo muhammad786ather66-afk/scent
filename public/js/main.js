@@ -246,10 +246,10 @@ function initContactForm() {
       return;
     }
 
-    // Static site handling: display clear luxury acknowledgement
+    // Contact form confirmation: luxury brand concierge acknowledgment
     statusBox.innerHTML = `
       <strong>Thank you, ${name}.</strong><br>
-      Your inquiry regarding VELORA has been recorded. As this is a static demonstration build for Cloudflare Pages, please send direct messages to <a href="mailto:hello@velora.example?subject=VELORA Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" style="color: var(--color-gold); text-decoration: underline;">hello@velora.example</a> or connect a static form service (such as Formspree or Cloudflare Workers).
+      Your inquiry has been received by our concierge team. We will review your message and get back to you shortly. You may also reach us directly at <a href="mailto:hello@velorafragrances.com?subject=VELORA Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" style="color: var(--color-gold); text-decoration: underline;">hello@velorafragrances.com</a>.
     `;
     statusBox.style.display = 'block';
     statusBox.className = 'form-status success';

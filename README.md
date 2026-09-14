@@ -82,7 +82,7 @@ When you receive your official high-resolution product photography:
 The contact form in `contact.html` is ready for static form handlers:
 - **Formspree**: Set `action="https://formspree.io/f/your-form-id"` and `method="POST"`.
 - **Web3Forms**: Add your access key `<input type="hidden" name="access_key" value="YOUR-KEY">`.
-- **Direct Mailto**: Or configure the form to open `mailto:hello@velora.example`.
+- **Direct Mailto**: Or configure the form to open `mailto:hello@velorafragrances.com`.
 
 ---
 
