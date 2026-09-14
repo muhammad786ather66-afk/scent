@@ -90,9 +90,9 @@
       <nav class="breadcrumb-container" aria-label="Breadcrumb">
         <div class="container">
           <ol class="breadcrumb-list">
-            <li><a href="index.html">Home</a></li>
-            <li><span class="breadcrumb-separator">/</span></li>
-            <li aria-current="page">Your Bag</li>
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Home</a></li>
+            <li class="breadcrumb-separator" aria-hidden="true">/</li>
+            <li class="breadcrumb-item current" aria-current="page">Your Bag</li>
           </ol>
         </div>
       </nav>
@@ -245,7 +245,12 @@
                         </h3>
                         <div class="cart-item-unit-price">${item.product.price}</div>
                         <button type="button" class="cart-item-remove-btn" data-remove-id="${item.id}" aria-label="Remove ${item.product.name} from bag">
-                          REMOVE
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span>REMOVE</span>
                         </button>
                       </div>
                     </div>
@@ -254,11 +259,11 @@
                     <div class="cart-row-qty">
                       <div class="qty-stepper-control">
                         <button type="button" class="qty-btn btn-qty-minus" data-decrease-id="${item.id}" aria-label="Decrease quantity">
-                          &minus;
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                         <span class="qty-value-display">${item.quantity}</span>
                         <button type="button" class="qty-btn btn-qty-plus" data-increase-id="${item.id}" aria-label="Increase quantity">
-                          &#43;
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
                       </div>
                     </div>
@@ -311,7 +316,7 @@
                 <div class="summary-divider"></div>
 
                 <div class="summary-line-item total-highlight">
-                  <span class="summary-label-total">SUBTOTAL</span>
+                  <span class="summary-label-total">TOTAL DUE ON DELIVERY</span>
                   <span class="summary-val-total">${summary.totalDisplay}</span>
                 </div>
 

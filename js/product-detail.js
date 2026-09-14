@@ -148,7 +148,7 @@ function renderRelatedFragrances(currentId) {
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <path d="M16 10a4 4 0 0 1-8 0"></path>
             </svg>
-            Cart / Order Now
+            Order Now
           </button>
         </div>
       </div>
@@ -160,14 +160,14 @@ function renderRelatedFragrances(currentId) {
         <a href="product.html?product=${p.slug}">${p.name}</a>
       </h3>
       <p class="product-card-desc">${p.description}</p>
-      <div class="product-card-footer" style="flex-wrap: wrap; gap: 0.65rem;">
-        <span class="product-price">${p.price}</span>
-        <div style="display: flex; gap: 0.4rem; align-items: center; width: 100%;">
-          <a href="product.html?product=${p.slug}" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 0.55rem 0.6rem; font-size: 0.72rem;">
-            VIEW DETAILS
-          </a>
-          <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="flex: 1; padding: 0.55rem 0.6rem; font-size: 0.72rem;">
-            Cart / Order Now
+      <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
+          <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
+        </div>
+        <div style="width: 100%;">
+          <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="width: 100%; text-align: center; padding: 0.85rem 1rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer;">
+            ORDER NOW
           </button>
         </div>
       </div>

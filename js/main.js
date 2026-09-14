@@ -15,7 +15,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initMobileMenu();
-  initModals();
   initFaqAccordion();
   initContactForm();
   renderDynamicCollections();
@@ -133,7 +132,7 @@ function renderDynamicCollections() {
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
-              Cart / Order Now
+              ORDER NOW
             </button>
           </div>
         </div>
@@ -145,14 +144,14 @@ function renderDynamicCollections() {
           <a href="product.html?product=${p.slug}">${p.name}</a>
         </h3>
         <p class="product-card-desc">${p.description}</p>
-        <div class="product-card-footer" style="flex-wrap: wrap; gap: 0.75rem;">
-          <span class="product-price">${p.price}</span>
-          <div class="product-card-cta-group" style="display: flex; gap: 0.4rem; align-items: center; width: 100%;">
-            <a href="product.html?product=${p.slug}" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 0.55rem 0.6rem; font-size: 0.72rem; letter-spacing: 0.08em;">
-              VIEW DETAILS
-            </a>
-            <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="flex: 1; text-align: center; padding: 0.55rem 0.6rem; font-size: 0.72rem; letter-spacing: 0.08em;">
-              Cart / Order Now
+        <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
+            <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
+          </div>
+          <div class="product-card-cta-group" style="width: 100%;">
+            <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="width: 100%; text-align: center; padding: 0.85rem 1rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer;">
+              ORDER NOW
             </button>
           </div>
         </div>
@@ -221,53 +220,6 @@ function initFaqAccordion() {
         trigger.setAttribute('aria-expanded', 'true');
         content.style.maxHeight = content.scrollHeight + 'px';
       }
-    });
-  });
-}
-
-/**
- * Future Ecommerce Notice Modal
- */
-function initModals() {
-  const modal = document.getElementById('order-notice-modal');
-  if (!modal) return;
-
-  const closeBtn = modal.querySelector('.velora-modal-close');
-  const dismissBtn = modal.querySelector('.modal-dismiss-btn');
-
-  const closeModal = () => {
-    modal.classList.remove('is-active');
-    document.body.style.overflow = '';
-  };
-
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (dismissBtn) dismissBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-      closeModal();
-    }
-  });
-
-  // Attach to all preorder/cart trigger buttons
-  window.triggerOrderNotice = function(productName = '') {
-    const titleElem = document.getElementById('modal-product-name');
-    if (titleElem && productName) {
-      titleElem.textContent = productName;
-    }
-    modal.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  // Attach to legacy preorder notice buttons if present
-  document.querySelectorAll('.trigger-cart-notice').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.triggerOrderNotice();
     });
   });
 }

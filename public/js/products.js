@@ -1,11 +1,11 @@
 /**
- * VELORA - Centralized Product Data Architecture
+ * VELORA - Centralized Fragrance Product Catalog
  * 
- * Instructions for editing:
- * - Update prices by changing the `price` property (e.g., "PKR 12,500").
- * - Image replacements: Drop official WebP or PNG files into `/assets/images/` 
- *   using filenames: midnight.webp, silver-storm.webp, royal-dusk.webp, noir-vanilla.webp.
- * - Centralized structure ensures changes reflect on the Home, Collection, and Product Detail pages automatically.
+ * Instructions for updating:
+ * - Update prices by changing the `price` property (e.g., "PKR 0,000" or "PKR 14,500").
+ * - If numeric calculation is desired, update `numericPrice` (e.g., 0 or 14500).
+ * - All changes automatically reflect across the entire store:
+ *   Home, Collection, Product Details, Cart, and COD Checkout.
  */
 
 window.VELORA_PRODUCTS = [
@@ -16,17 +16,19 @@ window.VELORA_PRODUCTS = [
     fullName: "MIDNIGHT by VELORA",
     type: "EAU DE PARFUM",
     size: "50 ML",
-    price: "PKR 0,000",
+    price: "PKR 3,000",
+    numericPrice: 3000,
     image: "assets/images/midnight.webp",
-    fallbackImage: "assets/images/midnight.svg",
+    fallbackImage: "assets/images/midnight.jpg",
     description: "Deep, mysterious, and sophisticated — a fragrance created for the moments when the night takes over.",
     character: "Mysterious & Confident",
     occasion: "Evening & Nocturnal Gatherings",
     mood: "Enigmatic, commanding, and quietly alluring.",
+    available: true,
     features: [
       "Concentration: Eau de Parfum",
       "Nominal Volume: 50 ML / 1.7 FL. OZ.",
-      "Vessel: Hand-finished octagonal bottle with faceted diamond crystal stopper",
+      "Vessel: Frosted amber flacon with faceted diamond crystal stopper & chrome collar",
       "Origin: Contemporary luxury fragrance crafted for lasting presence"
     ]
   },
@@ -37,17 +39,19 @@ window.VELORA_PRODUCTS = [
     fullName: "SILVER STORM by VELORA",
     type: "EAU DE PARFUM",
     size: "50 ML",
-    price: "PKR 0,000",
+    price: "PKR 2,000",
+    numericPrice: 2000,
     image: "assets/images/silver-storm.webp",
-    fallbackImage: "assets/images/silver-storm.svg",
+    fallbackImage: "assets/images/silver-storm.jpg",
     description: "Fresh, energetic, and striking — a modern expression of confidence and adventure.",
     character: "Energetic & Striking",
     occasion: "Signature Daily & Dynamic Moments",
     mood: "Electrifying, crisp, and boldly confident.",
+    available: true,
     features: [
       "Concentration: Eau de Parfum",
       "Nominal Volume: 50 ML / 1.7 FL. OZ.",
-      "Vessel: Frosted ruby glass with polished chrome collar and crystal stopper",
+      "Vessel: Frosted ruby crimson glass with polished chrome collar and crystal stopper",
       "Origin: Contemporary luxury fragrance crafted for lasting presence"
     ]
   },
@@ -58,17 +62,19 @@ window.VELORA_PRODUCTS = [
     fullName: "ROYAL DUSK by VELORA",
     type: "EAU DE PARFUM",
     size: "50 ML",
-    price: "PKR 0,000",
+    price: "PKR 2,500",
+    numericPrice: 2500,
     image: "assets/images/royal-dusk.webp",
-    fallbackImage: "assets/images/royal-dusk.svg",
+    fallbackImage: "assets/images/royal-dusk.jpg",
     description: "Refined and mysterious, inspired by the quiet sophistication of twilight.",
     character: "Refined & Contemplative",
     occasion: "Twilight Receptions & Formal Intimacy",
     mood: "Serene, regal, and effortlessly distinguished.",
+    available: true,
     features: [
       "Concentration: Eau de Parfum",
       "Nominal Volume: 50 ML / 1.7 FL. OZ.",
-      "Vessel: Frosted emerald glass with silver emblem and crystal stopper",
+      "Vessel: Frosted emerald seafoam glass with silver emblem and crystal stopper",
       "Origin: Contemporary luxury fragrance crafted for lasting presence"
     ]
   },
@@ -79,17 +85,19 @@ window.VELORA_PRODUCTS = [
     fullName: "NOIR VANILLA by VELORA",
     type: "EAU DE PARFUM",
     size: "50 ML",
-    price: "PKR 0,000",
+    price: "PKR 1,800",
+    numericPrice: 1800,
     image: "assets/images/noir-vanilla.webp",
-    fallbackImage: "assets/images/noir-vanilla.svg",
+    fallbackImage: "assets/images/noir-vanilla.jpg",
     description: "Warm, sensual, and captivating, blending the richness of vanilla with a darker character.",
     character: "Sensual & Captivating",
     occasion: "Close Encounters & Autumnal Evenings",
     mood: "Velvety, resonant, and intoxicatingly dark.",
+    available: true,
     features: [
       "Concentration: Eau de Parfum",
       "Nominal Volume: 50 ML / 1.7 FL. OZ.",
-      "Vessel: Frosted dark mocha glass with silver emblem and crystal stopper",
+      "Vessel: Frosted dark mocha smoked glass with silver emblem and crystal stopper",
       "Origin: Contemporary luxury fragrance crafted for lasting presence"
     ]
   }
@@ -97,15 +105,17 @@ window.VELORA_PRODUCTS = [
 
 // Centralized helper functions
 window.getVeloraProducts = function() {
-  return window.VELORA_PRODUCTS;
+  return window.VELORA_PRODUCTS || [];
 };
 
 window.getVeloraProductBySlug = function(slug) {
-  if (!slug) return window.VELORA_PRODUCTS[0];
-  const cleaned = slug.trim().toLowerCase();
-  return window.VELORA_PRODUCTS.find(p => p.slug === cleaned || p.id === cleaned) || window.VELORA_PRODUCTS[0];
+  if (!slug) return (window.VELORA_PRODUCTS && window.VELORA_PRODUCTS[0]) || null;
+  const cleaned = String(slug).trim().toLowerCase();
+  return (window.VELORA_PRODUCTS || []).find(p => p.slug === cleaned || p.id === cleaned) || window.VELORA_PRODUCTS[0];
 };
 
 window.getVeloraProductById = function(id) {
-  return window.VELORA_PRODUCTS.find(p => p.id === id) || window.VELORA_PRODUCTS[0];
+  if (!id) return null;
+  const cleaned = String(id).trim().toLowerCase();
+  return (window.VELORA_PRODUCTS || []).find(p => p.id === cleaned || p.slug === cleaned) || null;
 };

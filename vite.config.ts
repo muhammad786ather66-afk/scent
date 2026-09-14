@@ -17,6 +17,8 @@ export default defineConfig(() => {
           main: path.resolve(__dirname, 'index.html'),
           collection: path.resolve(__dirname, 'collection.html'),
           product: path.resolve(__dirname, 'product.html'),
+          cart: path.resolve(__dirname, 'cart.html'),
+          checkout: path.resolve(__dirname, 'checkout.html'),
           about: path.resolve(__dirname, 'about.html'),
           contact: path.resolve(__dirname, 'contact.html'),
           faq: path.resolve(__dirname, 'faq.html'),

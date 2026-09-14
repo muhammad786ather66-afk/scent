@@ -15,7 +15,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initMobileMenu();
-  initModals();
   initFaqAccordion();
   initContactForm();
   renderDynamicCollections();
@@ -117,14 +116,26 @@ function renderDynamicCollections() {
     const isLazy = index > 1 ? 'loading="lazy"' : 'loading="eager"';
     return `
       <article class="product-card" data-product-id="${p.id}">
-        <a href="product.html?product=${p.slug}" class="product-card-visual" aria-label="View ${p.name}">
-          <img src="${p.image}" 
-               alt="VELORA ${p.name} Eau de Parfum 50 ML" 
-               class="product-card-img" 
-               ${isLazy}
-               decoding="async"
-               onerror="this.onerror=null; this.src='${p.fallbackImage}';" />
-        </a>
+        <div class="product-card-visual">
+          <a href="product.html?product=${p.slug}" aria-label="View ${p.name}" style="display: contents;">
+            <img src="${p.image}" 
+                 alt="VELORA ${p.name} Eau de Parfum 50 ML" 
+                 class="product-card-img" 
+                 ${isLazy}
+                 decoding="async"
+                 onerror="this.onerror=null; this.src='${p.fallbackImage}';" />
+          </a>
+          <div class="image-cart-overlay">
+            <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="${p.id}" aria-label="Order ${p.name} Now">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              ORDER NOW
+            </button>
+          </div>
+        </div>
         <div class="product-card-meta">
           <span class="product-card-type">${p.type}</span>
           <span class="product-card-size">${p.size}</span>
@@ -133,11 +144,16 @@ function renderDynamicCollections() {
           <a href="product.html?product=${p.slug}">${p.name}</a>
         </h3>
         <p class="product-card-desc">${p.description}</p>
-        <div class="product-card-footer">
-          <span class="product-price">${p.price}</span>
-          <a href="product.html?product=${p.slug}" class="btn btn-secondary" style="padding: 0.55rem 1.15rem; font-size: 0.75rem;">
-            VIEW FRAGRANCE
-          </a>
+        <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
+            <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
+          </div>
+          <div class="product-card-cta-group" style="width: 100%;">
+            <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="width: 100%; text-align: center; padding: 0.85rem 1rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer;">
+              ORDER NOW
+            </button>
+          </div>
         </div>
       </article>
     `;
@@ -204,52 +220,6 @@ function initFaqAccordion() {
         trigger.setAttribute('aria-expanded', 'true');
         content.style.maxHeight = content.scrollHeight + 'px';
       }
-    });
-  });
-}
-
-/**
- * Future Ecommerce Notice Modal
- */
-function initModals() {
-  const modal = document.getElementById('order-notice-modal');
-  if (!modal) return;
-
-  const closeBtn = modal.querySelector('.velora-modal-close');
-  const dismissBtn = modal.querySelector('.modal-dismiss-btn');
-
-  const closeModal = () => {
-    modal.classList.remove('is-active');
-    document.body.style.overflow = '';
-  };
-
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (dismissBtn) dismissBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-      closeModal();
-    }
-  });
-
-  // Attach to all preorder/cart trigger buttons
-  window.triggerOrderNotice = function(productName = '') {
-    const titleElem = document.getElementById('modal-product-name');
-    if (titleElem && productName) {
-      titleElem.textContent = productName;
-    }
-    modal.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  document.querySelectorAll('.cart-toggle-btn, .trigger-cart-notice').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.triggerOrderNotice();
     });
   });
 }

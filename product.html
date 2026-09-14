@@ -106,13 +106,13 @@
                    fetchpriority="high"
                    decoding="async" />
               <div class="image-cart-overlay">
-                <button type="button" class="btn-image-cart-order" id="btn-image-detail-order" aria-label="Cart / Order Now">
+                <button type="button" class="btn-image-cart-order" id="btn-image-detail-order" aria-label="Order Now">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                   </svg>
-                  Cart / Order Now
+                  ORDER NOW
                 </button>
               </div>
             </div>
@@ -165,19 +165,20 @@
               <div class="detail-qty-row">
                 <label for="product-qty-input" class="detail-qty-label">QUANTITY</label>
                 <div class="qty-stepper-control">
-                  <button type="button" class="qty-btn" id="btn-qty-minus" aria-label="Decrease quantity">&minus;</button>
+                  <button type="button" class="qty-btn" id="btn-qty-minus" aria-label="Decrease quantity">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </button>
                   <input type="number" id="product-qty-input" name="quantity" class="qty-number-input" value="1" min="1" max="20" aria-label="Selected quantity" />
-                  <button type="button" class="qty-btn" id="btn-qty-plus" aria-label="Increase quantity">&#43;</button>
+                  <button type="button" class="qty-btn" id="btn-qty-plus" aria-label="Increase quantity">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </button>
                 </div>
               </div>
 
               <!-- Purchase Actions -->
               <div class="purchase-actions-box">
-                <button type="button" class="btn btn-primary" id="btn-add-to-cart">
-                  ADD TO CART
-                </button>
-                <button type="button" class="btn btn-gold-outline" id="btn-buy-now">
-                  BUY NOW
+                <button type="button" class="btn btn-primary" id="btn-buy-now" style="width: 100%; text-align: center; padding: 1rem 1.5rem; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.12em;">
+                  ORDER NOW
                 </button>
               </div>
 
