@@ -12,17 +12,22 @@
  * - Static contact form interaction
  */
 
-// Immediate theme application to prevent flash of wrong theme (default to light mode)
+// Immediate theme application to prevent flash of wrong theme (Light Mode is default on arrival)
 (function() {
   try {
-    const saved = localStorage.getItem('velora_theme');
-    if (saved === 'dark' || saved === 'light') {
-      document.documentElement.setAttribute('data-theme', saved);
+    // Reset any old test session dark preference so all visitors start in light mode
+    if (localStorage.getItem('velora_theme_v2') === null) {
+      localStorage.removeItem('velora_theme');
+      localStorage.setItem('velora_theme_v2', 'light');
+    }
+    const saved = localStorage.getItem('velora_theme_v2');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
   } catch (e) {
-    // Local storage unavailable
+    document.documentElement.setAttribute('data-theme', 'light');
   }
 })();
 
@@ -460,21 +465,22 @@ function initWhatsAppFloatingBtn() {
  */
 function getPreferredTheme() {
   try {
-    const saved = localStorage.getItem('velora_theme');
-    if (saved === 'dark' || saved === 'light') {
-      return saved;
+    const saved = localStorage.getItem('velora_theme_v2');
+    if (saved === 'dark') {
+      return 'dark';
     }
   } catch (e) {}
   return 'light'; // Default to light mode as requested
 }
 
 function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
+  const activeTheme = (theme === 'dark') ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', activeTheme);
   try {
-    localStorage.setItem('velora_theme', theme);
+    localStorage.setItem('velora_theme_v2', activeTheme);
   } catch (e) {}
 
-  const isDark = theme === 'dark';
+  const isDark = activeTheme === 'dark';
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
     btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
@@ -486,7 +492,7 @@ function setTheme(theme) {
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
   const next = current === 'dark' ? 'light' : 'dark';
   setTheme(next);
 }

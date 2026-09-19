@@ -6,64 +6,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root,
-[data-theme="dark"] {
-  /* Color Palette — Midnight Haute Parfumerie */
-  --color-bg-deep: #07080a;
-  --color-bg-surface: #0d0e12;
-  --color-bg-elevated: #14161d;
-  --color-bg-card: #11131a;
-  --color-bg-card-hover: #171a24;
-  
-  /* Metallic Accents */
-  --color-gold: #c5a059;
-  --color-gold-light: #edd094;
-  --color-gold-dark: #9a7632;
-  --color-gold-muted: rgba(197, 160, 89, 0.2);
-  --color-gold-border: rgba(197, 160, 89, 0.35);
-
-  /* Neutrals & Text */
-  --color-ivory: #fcfbf9;
-  --color-champagne: #eee6db;
-  --color-silver: #e4e4e7;
-  --color-muted: #a1a1aa;
-  --color-subtle: #71717a;
-  --color-border: #22242e;
-  --color-border-subtle: rgba(255, 255, 255, 0.08);
-
-  /* Component Surfaces & Gradients */
-  --header-bg: rgba(7, 8, 10, 0.9);
-  --header-border: rgba(197, 160, 89, 0.25);
-  --card-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
-  --hero-bg: radial-gradient(circle at 50% 40%, #161a29 0%, var(--color-bg-deep) 75%);
-  --visual-bg: radial-gradient(circle at center, #181c28 0%, #0c0d12 100%);
-  --input-bg: rgba(255, 255, 255, 0.04);
-  --input-border: rgba(255, 255, 255, 0.15);
-  --footer-bg: #08090c;
-  --badge-wa-bg: rgba(12, 14, 20, 0.92);
-  --badge-wa-border: rgba(37, 211, 102, 0.45);
-  --badge-wa-color: #ffffff;
-
-  /* Typography */
-  --font-serif: 'Playfair Display', Didot, 'Bodoni MT', 'Cinzel', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  /* Sizing & Transitions */
-  --header-height: 80px;
-  --header-height-mobile: 68px;
-  --max-width: 1280px;
-  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-luxury: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  --transition-theme: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                      background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                      color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                      border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                      box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  /* Touch target */
-  --min-touch-target: 44px;
-}
-
 [data-theme="light"] {
   /* Color Palette — French Haute Parfumerie (Light Alabaster & Warm Ivory) */
   --color-bg-deep: #f8f6f0;
@@ -100,6 +42,64 @@
   --badge-wa-bg: rgba(255, 255, 255, 0.96);
   --badge-wa-border: rgba(37, 211, 102, 0.55);
   --badge-wa-color: #111319;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Didot, 'Bodoni MT', 'Cinzel', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Sizing & Transitions */
+  --header-height: 80px;
+  --header-height-mobile: 68px;
+  --max-width: 1280px;
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-luxury: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-theme: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Touch target */
+  --min-touch-target: 44px;
+}
+
+[data-theme="dark"] {
+  /* Color Palette — Midnight Haute Parfumerie */
+  --color-bg-deep: #07080a;
+  --color-bg-surface: #0d0e12;
+  --color-bg-elevated: #14161d;
+  --color-bg-card: #11131a;
+  --color-bg-card-hover: #171a24;
+  
+  /* Metallic Accents */
+  --color-gold: #c5a059;
+  --color-gold-light: #edd094;
+  --color-gold-dark: #9a7632;
+  --color-gold-muted: rgba(197, 160, 89, 0.2);
+  --color-gold-border: rgba(197, 160, 89, 0.35);
+
+  /* Neutrals & Text */
+  --color-ivory: #fcfbf9;
+  --color-champagne: #eee6db;
+  --color-silver: #e4e4e7;
+  --color-muted: #a1a1aa;
+  --color-subtle: #71717a;
+  --color-border: #22242e;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Component Surfaces & Gradients */
+  --header-bg: rgba(7, 8, 10, 0.9);
+  --header-border: rgba(197, 160, 89, 0.25);
+  --card-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  --hero-bg: radial-gradient(circle at 50% 40%, #161a29 0%, var(--color-bg-deep) 75%);
+  --visual-bg: radial-gradient(circle at center, #181c28 0%, #0c0d12 100%);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.15);
+  --footer-bg: #08090c;
+  --badge-wa-bg: rgba(12, 14, 20, 0.92);
+  --badge-wa-border: rgba(37, 211, 102, 0.45);
+  --badge-wa-color: #ffffff;
 }
 
 /* ==========================================================================

@@ -13,7 +13,7 @@
 
     <!-- Theme Preference Initialization (Default: Light Mode) -->
     <script>
-      (function(){try{var t=localStorage.getItem('velora_theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+      (function(){try{if(localStorage.getItem('velora_theme_v2')===null){localStorage.removeItem('velora_theme');localStorage.setItem('velora_theme_v2','light');}var t=localStorage.getItem('velora_theme_v2')==='dark'?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
     </script>
     <style>
       .faq-item {
