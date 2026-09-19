@@ -21,6 +21,10 @@ const WHATSAPP_NUMBER = "";
 (function () {
   'use strict';
 
+  // Retrieve order method from localStorage (default: 'manual')
+  let currentOrderMethod = localStorage.getItem('velora_order_preference') || 'manual';
+  let lastPlacedOrderData = null;
+
   document.addEventListener('DOMContentLoaded', () => {
     initCheckoutPage();
   });
@@ -29,11 +33,27 @@ const WHATSAPP_NUMBER = "";
     const checkoutContainer = document.getElementById('checkout-page-container');
     if (!checkoutContainer) return;
 
+    // Apply and wire up order preference
+    syncOrderMethod(currentOrderMethod);
+    setupOrderMethodTabs();
+
     renderCheckoutSummary();
 
     const checkoutForm = document.getElementById('checkout-form');
     if (checkoutForm) {
       checkoutForm.addEventListener('submit', handleOrderSubmission);
+    }
+
+    // Replay voice button listener
+    const replayVoiceBtn = document.getElementById('btn-replay-voice');
+    if (replayVoiceBtn) {
+      replayVoiceBtn.addEventListener('click', () => {
+        if (lastPlacedOrderData) {
+          playOrderVoiceMessage(lastPlacedOrderData.name, lastPlacedOrderData.orderRef);
+        } else {
+          playOrderVoiceMessage('', '#VL-ORDER');
+        }
+      });
     }
 
     // "Same as mobile number" helper button
@@ -50,6 +70,190 @@ const WHATSAPP_NUMBER = "";
           err.style.display = 'none';
         }
       });
+    }
+  }
+
+  /**
+   * Synchronize UI with selected order method (manual vs whatsapp)
+   */
+  function syncOrderMethod(method) {
+    currentOrderMethod = method;
+    localStorage.setItem('velora_order_preference', method);
+
+    const btnManual = document.getElementById('btn-checkout-method-manual');
+    const btnWa = document.getElementById('btn-checkout-method-whatsapp');
+    const waLabel = document.getElementById('cust-whatsapp-label');
+    const waInput = document.getElementById('cust-whatsapp');
+    const waHint = document.getElementById('cust-whatsapp-hint');
+    const copyBtn = document.getElementById('btn-copy-phone-to-wa');
+    const waError = document.getElementById('cust-whatsapp-error');
+
+    if (method === 'manual') {
+      document.body.classList.add('order-mode-manual');
+      if (btnManual) {
+        btnManual.classList.add('active');
+        btnManual.setAttribute('aria-checked', 'true');
+      }
+      if (btnWa) {
+        btnWa.classList.remove('active');
+        btnWa.setAttribute('aria-checked', 'false');
+      }
+
+      // Update WhatsApp field to optional Alternate Contact without WhatsApp labels
+      if (waLabel) waLabel.innerHTML = 'Alternate Contact Phone <span style="color: #71717a; font-weight: normal;">(Optional)</span>';
+      if (waInput) {
+        waInput.placeholder = 'e.g. 0300 1234567';
+        waInput.removeAttribute('required');
+        waInput.classList.remove('input-error');
+      }
+      if (waHint) waHint.textContent = 'Optional secondary phone number for courier delivery coordination.';
+      if (copyBtn) copyBtn.style.display = 'none';
+      if (waError) {
+        waError.textContent = '';
+        waError.style.display = 'none';
+      }
+    } else {
+      document.body.classList.remove('order-mode-manual');
+      if (btnManual) {
+        btnManual.classList.remove('active');
+        btnManual.setAttribute('aria-checked', 'false');
+      }
+      if (btnWa) {
+        btnWa.classList.add('active');
+        btnWa.setAttribute('aria-checked', 'true');
+      }
+
+      // Restore WhatsApp field requirements
+      if (waLabel) waLabel.innerHTML = 'WhatsApp Number <span class="required-star">*</span>';
+      if (waInput) {
+        waInput.placeholder = 'e.g. 0300 1234567 or +92 300 1234567';
+        waInput.setAttribute('required', 'required');
+      }
+      if (waHint) waHint.textContent = 'For dispatch notifications and courier tracking on WhatsApp.';
+      if (copyBtn) copyBtn.style.display = 'inline-block';
+    }
+  }
+
+  /**
+   * Attach tab event handlers for order method switcher
+   */
+  function setupOrderMethodTabs() {
+    const btnManual = document.getElementById('btn-checkout-method-manual');
+    const btnWa = document.getElementById('btn-checkout-method-whatsapp');
+
+    if (btnManual) {
+      btnManual.addEventListener('click', () => {
+        syncOrderMethod('manual');
+      });
+    }
+
+    if (btnWa) {
+      btnWa.addEventListener('click', () => {
+        syncOrderMethod('whatsapp');
+      });
+    }
+  }
+
+  /**
+   * Play professional chime + luxury audio voice message on order submission
+   */
+  function playOrderVoiceMessage(customerName, orderRef) {
+    const voiceCard = document.getElementById('voice-confirmation-card');
+    const voiceBtnLabel = document.getElementById('voice-btn-label');
+
+    // 1. Play luxury harmonic chime via Web Audio API
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        const now = ctx.currentTime;
+
+        // Note 1: F5 (698.46 Hz)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(698.46, now);
+        gain1.gain.setValueAtTime(0.18, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.6);
+
+        // Note 2: A5 (880 Hz) - gentle luxury resonance
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(880.00, now + 0.18);
+        gain2.gain.setValueAtTime(0.16, now + 0.18);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.18);
+        osc2.stop(now + 0.9);
+      }
+    } catch (err) {
+      console.warn('Audio chime notice:', err);
+    }
+
+    // 2. Play professional voice message via Web Speech Synthesis API
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel(); // Stop any pending speech
+
+      const firstName = customerName ? customerName.split(' ')[0] : '';
+      const spokenText = `Thank you ${firstName ? firstName : ''} for shopping VELORA Haute Parfumerie. Your bespoke Cash on Delivery order has been successfully placed. Our dispatch atelier is now preparing your handcrafted flacons, and our courier will deliver them directly to your doorstep. Wear your presence.`;
+
+      const utterance = new SpeechSynthesisUtterance(spokenText);
+      utterance.rate = 0.92;
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
+
+      // Select highest quality English voice available
+      const voices = window.speechSynthesis.getVoices();
+      const luxuryVoice = voices.find(v => 
+        v.lang.startsWith('en') && (
+          v.name.includes('Google') || 
+          v.name.includes('Natural') || 
+          v.name.includes('Samantha') || 
+          v.name.includes('Serena') || 
+          v.name.includes('Daniel') || 
+          v.name.includes('Premium') ||
+          v.name.includes('en-GB') || 
+          v.name.includes('en-US')
+        )
+      ) || voices.find(v => v.lang.startsWith('en'));
+
+      if (luxuryVoice) utterance.voice = luxuryVoice;
+
+      utterance.onstart = () => {
+        if (voiceCard) voiceCard.classList.add('is-speaking');
+        if (voiceBtnLabel) voiceBtnLabel.textContent = 'SPEAKING...';
+      };
+
+      utterance.onend = () => {
+        if (voiceCard) voiceCard.classList.remove('is-speaking');
+        if (voiceBtnLabel) voiceBtnLabel.textContent = 'REPLAY VOICE';
+      };
+
+      utterance.onerror = () => {
+        if (voiceCard) voiceCard.classList.remove('is-speaking');
+        if (voiceBtnLabel) voiceBtnLabel.textContent = 'REPLAY VOICE';
+      };
+
+      // Slight timeout to let the chime sound first
+      setTimeout(() => {
+        window.speechSynthesis.speak(utterance);
+      }, 450);
+    } else {
+      // If speech synthesis not supported, pulse equalizer briefly
+      if (voiceCard) {
+        voiceCard.classList.add('is-speaking');
+        setTimeout(() => voiceCard.classList.remove('is-speaking'), 3000);
+      }
     }
   }
 
@@ -194,10 +398,21 @@ const WHATSAPP_NUMBER = "";
     const phoneValid = cleanPhoneDigits.length >= 9 && cleanPhoneDigits.length <= 16;
     validateField(phoneInput, phoneValid, "Please enter a valid mobile phone number (e.g. 0300 1234567).");
 
-    // Validate WhatsApp: minimum 9 characters
-    const cleanWaDigits = whatsapp.replace(/[^0-9]/g, '');
-    const waValid = cleanWaDigits.length >= 9 && cleanWaDigits.length <= 16;
-    validateField(whatsappInput, waValid, "Please enter a valid WhatsApp number for order coordination.");
+    // Validate WhatsApp / Alternate Contact
+    if (currentOrderMethod === 'whatsapp') {
+      const cleanWaDigits = whatsapp.replace(/[^0-9]/g, '');
+      const waValid = cleanWaDigits.length >= 9 && cleanWaDigits.length <= 16;
+      validateField(whatsappInput, waValid, "Please enter a valid WhatsApp number for order coordination.");
+    } else {
+      // In manual mode, alternate phone is optional; only validate if user entered something
+      if (whatsapp.length > 0) {
+        const cleanAltDigits = whatsapp.replace(/[^0-9]/g, '');
+        const altValid = cleanAltDigits.length >= 9 && cleanAltDigits.length <= 16;
+        validateField(whatsappInput, altValid, "Please enter a valid secondary phone number or leave blank.");
+      } else {
+        validateField(whatsappInput, true, "");
+      }
+    }
 
     validateField(cityInput, city.length >= 2, "Please provide your delivery city.");
     validateField(addressInput, address.length >= 8, "Please enter your complete physical street address for courier delivery.");
@@ -216,16 +431,19 @@ const WHATSAPP_NUMBER = "";
 
     // Generate Unique Order Reference
     const orderRef = '#VL-' + Math.floor(100000 + Math.random() * 900000);
+    lastPlacedOrderData = { name, orderRef };
+
     const itemsText = summary.items.map(item => `• ${item.product.name} × ${item.quantity} (${item.lineTotalDisplay})`).join('\n');
 
     const orderText = 
 `NEW VELORA COD ORDER
 Order Reference: ${orderRef}
+Order Mode: ${currentOrderMethod === 'manual' ? 'Direct Manual Website COD' : 'WhatsApp Assisted COD'}
 
 CUSTOMER DETAILS:
 Name: ${name}
 Phone: ${phone}
-WhatsApp: ${whatsapp}
+${currentOrderMethod === 'manual' ? (whatsapp ? 'Alternate Phone: ' + whatsapp : '') : 'WhatsApp: ' + whatsapp}
 City: ${city}
 Address: ${address}
 Order Note: ${note || 'None'}
@@ -249,9 +467,10 @@ Shipping: Free Nationwide Delivery`;
         body: JSON.stringify({
           _subject: `New VELORA COD Order ${orderRef} - ${name}`,
           OrderID: orderRef,
+          Order_Mode: currentOrderMethod === 'manual' ? 'Manual Order' : 'WhatsApp Order',
           Customer_Name: name,
           Phone: phone,
-          WhatsApp: whatsapp,
+          Secondary_Contact: whatsapp || 'None',
           City: city,
           Delivery_Address: address,
           Order_Note: note || 'None',
@@ -269,14 +488,32 @@ Shipping: Free Nationwide Delivery`;
     const successGreeting = document.getElementById('success-customer-greeting');
     const successOrderNumber = document.getElementById('success-order-number');
     const successCustomerName = document.getElementById('success-customer-name');
+    const successContactLabel = document.getElementById('success-contact-label');
     const successCustomerWhatsapp = document.getElementById('success-customer-whatsapp');
     const successDeliveryAddress = document.getElementById('success-delivery-address');
     const successTotalPrice = document.getElementById('success-total-price');
+    const waConfirmBlock = document.getElementById('checkout-wa-confirm-block');
 
     if (successGreeting) successGreeting.textContent = `Thank you, ${name}! Your order has been placed.`;
     if (successOrderNumber) successOrderNumber.textContent = orderRef;
-    if (successCustomerName) successCustomerName.textContent = `${name} • ${phone}`;
-    if (successCustomerWhatsapp) successCustomerWhatsapp.textContent = whatsapp;
+    if (successCustomerName) successCustomerName.textContent = `${name}`;
+
+    if (currentOrderMethod === 'manual') {
+      if (successContactLabel) successContactLabel.textContent = 'Mobile Number';
+      if (successCustomerWhatsapp) {
+        successCustomerWhatsapp.textContent = phone;
+        successCustomerWhatsapp.style.color = '#ffffff';
+      }
+      if (waConfirmBlock) waConfirmBlock.style.display = 'none';
+    } else {
+      if (successContactLabel) successContactLabel.textContent = 'WhatsApp Contact';
+      if (successCustomerWhatsapp) {
+        successCustomerWhatsapp.textContent = whatsapp || phone;
+        successCustomerWhatsapp.style.color = '#4ade80';
+      }
+      if (waConfirmBlock) waConfirmBlock.style.display = 'block';
+    }
+
     if (successDeliveryAddress) successDeliveryAddress.textContent = `${address}, ${city}`;
     if (successTotalPrice) successTotalPrice.textContent = summary.totalDisplay;
 
@@ -289,6 +526,9 @@ Shipping: Free Nationwide Delivery`;
       successView.style.display = 'block';
       successView.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    // Play Voice Confirmation Message and Chime
+    playOrderVoiceMessage(name, orderRef);
 
     // Clear cart
     window.VeloraCart.clearCart();

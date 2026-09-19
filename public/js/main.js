@@ -12,13 +12,20 @@
  * - Static contact form interaction
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   initHeader();
   initMobileMenu();
   initFaqAccordion();
   initContactForm();
   renderDynamicCollections();
-});
+  initWhatsAppIcons();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 /**
  * Header Scroll & Active Links
@@ -88,6 +95,25 @@ function initMobileMenu() {
 
   backdrop.addEventListener('click', closeDrawer);
 
+  // Ensure mobile drawer has direct WhatsApp button
+  const mobileFooter = drawer.querySelector('.mobile-nav-footer');
+  if (mobileFooter && !mobileFooter.querySelector('.mobile-whatsapp-link')) {
+    const waLink = document.createElement('a');
+    waLink.className = 'whatsapp-direct-btn mobile-whatsapp-link';
+    waLink.href = 'https://wa.me/923036440752?text=' + encodeURIComponent('Hello VELORA Concierge, I would like to place an order.');
+    waLink.target = '_blank';
+    waLink.rel = 'noopener noreferrer';
+    waLink.style.marginTop = '0.75rem';
+    waLink.style.textDecoration = 'none';
+    waLink.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+      Order via WhatsApp
+    `;
+    mobileFooter.appendChild(waLink);
+  }
+
   // Close when clicking any nav link
   const drawerLinks = drawer.querySelectorAll('.mobile-nav-link, .btn');
   drawerLinks.forEach(link => {
@@ -103,6 +129,20 @@ function initMobileMenu() {
 }
 
 /**
+ * Canonical Authentic WhatsApp SVG Icon (Brand Colors & Precision Vector)
+ * Instantly recognizable WhatsApp icon with signature green bubble and white phone receiver.
+ */
+function getWhatsAppSvg(size = 18) {
+  return `
+    <svg class="whatsapp-icon" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+      <path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/>
+      <path fill="#FFFFFF" d="M17.47 14.38c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.89-.8-1.5-1.78-1.67-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.23-.24-.6-.49-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
+    </svg>
+  `;
+}
+window.getWhatsAppSvg = getWhatsAppSvg;
+
+/**
  * Dynamic Collection Cards Renderer
  */
 function renderDynamicCollections() {
@@ -111,12 +151,69 @@ function renderDynamicCollections() {
 
   const products = window.VELORA_PRODUCTS;
 
+  function attachCardListeners(container) {
+    if (!container) return;
+
+    container.querySelectorAll('.btn-card-order-now, .btn-card-buy-now').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const pid = btn.getAttribute('data-product-id');
+        if (window.VeloraCart) {
+          // Add item to bag and display notification toast
+          window.VeloraCart.addToCart(pid, 1, true);
+        }
+        
+        // Immediate tactile visual confirmation on button
+        const origHtml = btn.innerHTML;
+        btn.classList.add('btn-added-state');
+        btn.innerHTML = `<span>ADDED TO BAG ✓</span>`;
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.classList.remove('btn-added-state');
+        }, 1800);
+      });
+    });
+
+    container.querySelectorAll('.btn-card-add-cart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const pid = btn.getAttribute('data-product-id');
+        if (window.VeloraCart) {
+          window.VeloraCart.addToCart(pid, 1, true);
+        }
+        const origHtml = btn.innerHTML;
+        btn.classList.add('btn-added-state');
+        btn.innerHTML = `<span>ADDED ✓</span>`;
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.classList.remove('btn-added-state');
+        }, 1800);
+      });
+    });
+  }
+  window.attachVeloraCardEvents = attachCardListeners;
+
   function createCardHtml(p, index) {
     // Primary hero/first image eager load, others lazy
     const isLazy = index > 1 ? 'loading="lazy"' : 'loading="eager"';
+    const waOrderUrl = `https://wa.me/923036440752?text=${encodeURIComponent('Hello VELORA Concierge, I would like to order ' + p.name + ' (50 ML Eau de Parfum - ' + p.price + ').')}`;
+
     return `
       <article class="product-card" data-product-id="${p.id}">
         <div class="product-card-visual">
+          <!-- WhatsApp Order on the image -->
+          <a href="${waOrderUrl}" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="product-wa-floating-badge" 
+             aria-label="Order ${p.name} on WhatsApp" 
+             title="Order ${p.name} on WhatsApp">
+            ${getWhatsAppSvg(18)}
+            <span class="product-wa-badge-text">Order</span>
+          </a>
+
           <a href="product.html?product=${p.slug}" aria-label="View ${p.name}" style="display: contents;">
             <img src="${p.image}" 
                  alt="VELORA ${p.name} Eau de Parfum 50 ML" 
@@ -126,14 +223,10 @@ function renderDynamicCollections() {
                  onerror="this.onerror=null; this.src='${p.fallbackImage}';" />
           </a>
           <div class="image-cart-overlay">
-            <button type="button" class="btn-image-cart-order btn-add-to-cart" data-product-id="${p.id}" aria-label="Order ${p.name} Now">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-              </svg>
-              ORDER NOW
-            </button>
+            <a href="${waOrderUrl}" target="_blank" rel="noopener noreferrer" class="btn-image-cart-order btn-image-whatsapp-order" aria-label="Order ${p.name} via WhatsApp">
+              ${getWhatsAppSvg(16)}
+              <span>ORDER VIA WHATSAPP</span>
+            </a>
           </div>
         </div>
         <div class="product-card-meta">
@@ -149,9 +242,14 @@ function renderDynamicCollections() {
             <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
             <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
           </div>
-          <div class="product-card-cta-group" style="width: 100%;">
-            <button type="button" class="btn btn-primary btn-add-to-cart" data-product-id="${p.id}" style="width: 100%; text-align: center; padding: 0.85rem 1rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; cursor: pointer;">
-              ORDER NOW
+          <!-- Below: Details and Order Now button (item added to cart and checkout) -->
+          <div class="product-card-cta-group" style="width: 100%; display: flex; gap: 0.5rem;">
+            <a href="product.html?product=${p.slug}" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 0.82rem 0.5rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; display: inline-flex; align-items: center; justify-content: center;">
+              DETAILS
+            </a>
+            <button type="button" class="btn btn-primary btn-card-order-now" data-product-id="${p.id}" style="flex: 1.6; text-align: center; padding: 0.82rem 0.5rem; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;">
+              <span>ORDER NOW</span>
+              <span aria-hidden="true">&rarr;</span>
             </button>
           </div>
         </div>
@@ -161,6 +259,7 @@ function renderDynamicCollections() {
 
   function render(list) {
     collectionContainer.innerHTML = list.map((p, idx) => createCardHtml(p, idx)).join('');
+    attachCardListeners(collectionContainer);
   }
 
   render(products);
@@ -257,3 +356,52 @@ function initContactForm() {
     form.reset();
   });
 }
+
+/**
+ * Site-Wide Authentic WhatsApp Icon Enhancer
+ * Ensures every WhatsApp touchpoint displays the authentic green & white WhatsApp vector icon
+ */
+function initWhatsAppIcons() {
+  // Update header WhatsApp icon buttons
+  document.querySelectorAll('.header-whatsapp-icon-btn').forEach(btn => {
+    btn.innerHTML = getWhatsAppSvg(18);
+  });
+
+  // Update top announcement bar WhatsApp link
+  document.querySelectorAll('.announcement-whatsapp-link').forEach(link => {
+    const textSpan = link.querySelector('span');
+    const label = textSpan ? textSpan.textContent.trim() : 'Order via WhatsApp';
+    link.innerHTML = `${getWhatsAppSvg(14)}<span>${label}</span>`;
+  });
+
+  // Update floating concierge button
+  initWhatsAppFloatingBtn();
+}
+
+/**
+ * Site-Wide Floating WhatsApp Concierge Button
+ * Directly connects clients with the VELORA Atelier Concierge on 03036440752
+ */
+function initWhatsAppFloatingBtn() {
+  let floatingBtn = document.getElementById('floating-whatsapp-concierge');
+
+  if (!floatingBtn) {
+    floatingBtn = document.createElement('a');
+    floatingBtn.id = 'floating-whatsapp-concierge';
+    floatingBtn.className = 'floating-whatsapp-btn';
+    floatingBtn.href = 'https://wa.me/923036440752?text=' + encodeURIComponent('Hello VELORA Concierge, I would like to inquire about your luxury fragrance collection.');
+    floatingBtn.target = '_blank';
+    floatingBtn.rel = 'noopener noreferrer';
+    floatingBtn.setAttribute('aria-label', 'Order via WhatsApp with VELORA Concierge');
+    document.body.appendChild(floatingBtn);
+  }
+
+  floatingBtn.innerHTML = `
+    ${getWhatsAppSvg(24)}
+    <div class="floating-whatsapp-text">
+      <span class="floating-whatsapp-kicker">Concierge</span>
+      <span class="floating-whatsapp-phone">Order via WhatsApp</span>
+    </div>
+  `;
+}
+
