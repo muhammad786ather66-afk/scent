@@ -70,7 +70,35 @@ function renderProductDetail() {
     const waProductBtn = document.getElementById('btn-whatsapp-product');
     const waImageBtn = document.getElementById('btn-image-detail-whatsapp');
     const waStageBadge = document.getElementById('detail-stage-whatsapp-badge');
-    const msg = `Hello VELORA Concierge, I would like to order ${currentQty}x ${product.name} (${product.size}) for ${product.price} via Cash on Delivery. Please confirm my order.`;
+    
+    const unitPrice = product.price || 'PKR 3,000';
+    const numPrice = product.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 3000);
+    const totalDue = 'PKR ' + (numPrice * currentQty).toLocaleString();
+    const type = product.type || 'Extrait de Parfum';
+    const size = product.size || '50 ML';
+
+    const msg = 
+`*VELORA HAUTE PARFUMERIE — OFFICIAL ORDER*
+────────────────────────
+*ORDER DETAILS:*
+• Fragrance: *${product.name}*
+• Concentration: ${type}
+• Volume: ${size} (1.7 FL. OZ.)
+• Unit Price: ${unitPrice}
+• Quantity: ${currentQty} flacon(s)
+• Delivery: FREE Nationwide Express Delivery
+• Payment: Cash on Delivery (COD)
+• *TOTAL AMOUNT DUE:* *${totalDue}*
+────────────────────────
+*CUSTOMER DELIVERY INFORMATION:*
+• Full Name: 
+• Mobile / WhatsApp Number: 
+• City: 
+• Complete Street Delivery Address: 
+• Nearest Landmark / Notes: 
+
+Please confirm my order and arrange doorstep dispatch. Thank you!`;
+
     const waUrl = `https://wa.me/923036440752?text=${encodeURIComponent(msg)}`;
     if (waProductBtn) {
       waProductBtn.href = waUrl;

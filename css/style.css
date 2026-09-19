@@ -3323,27 +3323,27 @@ button, input, textarea, select {
 .qty-stepper-control {
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(180deg, #161a26 0%, #0d1019 100%);
-  border: 1px solid rgba(197, 160, 89, 0.45);
-  border-radius: 8px;
+  background: linear-gradient(180deg, #131722 0%, #0a0d15 100%);
+  border: 1.5px solid rgba(197, 160, 89, 0.45);
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6), 0 3px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  height: 42px;
+  height: 40px;
   vertical-align: middle;
 }
 
 .qty-stepper-control:hover,
 .qty-stepper-control:focus-within {
   border-color: var(--color-gold);
-  box-shadow: 0 0 18px rgba(197, 160, 89, 0.35), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 16px rgba(197, 160, 89, 0.35), inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .qty-btn {
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   border: none;
-  color: #e4e4e7;
-  width: 42px;
+  color: var(--color-gold);
+  width: 40px;
   height: 100%;
   display: inline-flex;
   align-items: center;
@@ -3359,7 +3359,7 @@ button, input, textarea, select {
 
 .qty-btn:hover:not(:disabled) {
   background: rgba(197, 160, 89, 0.22);
-  color: var(--color-gold-light);
+  color: #ffffff;
 }
 
 .qty-btn:active:not(:disabled) {
@@ -3369,9 +3369,10 @@ button, input, textarea, select {
 
 .qty-btn:disabled,
 .qty-btn.is-disabled {
-  opacity: 0.35;
+  opacity: 0.28;
   cursor: not-allowed;
   pointer-events: none;
+  color: #64748b;
 }
 
 .qty-btn:focus-visible {
@@ -3389,26 +3390,27 @@ button, input, textarea, select {
 }
 
 .qty-btn:hover:not(:disabled) svg {
-  transform: scale(1.15);
+  transform: scale(1.18);
 }
 
 .qty-value-display {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 46px;
+  min-width: 44px;
   height: 100%;
   padding: 0 0.5rem;
-  font-family: var(--font-mono, monospace);
-  font-size: 1.12rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #ffffff;
-  background: #080a11;
+  background: #06080e;
   border-left: 1px solid rgba(197, 160, 89, 0.25);
   border-right: 1px solid rgba(197, 160, 89, 0.25);
   user-select: none;
   text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .qty-number-input {
@@ -3775,9 +3777,90 @@ body.order-mode-manual #btn-copy-phone-to-wa {
 .cart-card-actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   PRIMARY PLACE ORDER BUTTON (BESPOKE HAUTE LUXURY DESIGN)
+   ========================================================================== */
+.btn-cart-place-order,
+.btn-checkout-proceed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.15rem 1.8rem;
+  background: linear-gradient(135deg, #d4af37 0%, #c5a059 50%, #b89345 100%);
+  color: #080a0f !important;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 0 6px 24px rgba(197, 160, 89, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: all var(--transition-fast);
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.btn-cart-place-order:hover,
+.btn-checkout-proceed:hover {
+  background: linear-gradient(135deg, #fae29c 0%, #dfba73 50%, #c5a059 100%);
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(197, 160, 89, 0.6), 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-cart-place-order:active,
+.btn-checkout-proceed:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(197, 160, 89, 0.35);
+}
+
+.btn-cart-place-order .btn-order-arrow,
+.btn-checkout-proceed .btn-order-arrow {
+  transition: transform var(--transition-fast);
+  stroke-width: 2.5;
+}
+
+.btn-cart-place-order:hover .btn-order-arrow,
+.btn-checkout-proceed:hover .btn-order-arrow {
+  transform: translateX(5px);
+}
+
+.cart-trust-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-trust-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+.cart-trust-badge-item svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -3912,28 +3995,29 @@ body.order-mode-manual #btn-copy-phone-to-wa {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.4);
+  gap: 0.5rem;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.35);
   color: #fca5a5;
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
   text-transform: uppercase;
-  padding: 0.55rem 0.95rem;
-  border-radius: 4px;
+  padding: 0.62rem 1.1rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: all var(--transition-fast);
   font-family: var(--font-sans);
   line-height: 1;
+  width: 100%;
 }
 
 .cart-item-remove-btn:hover {
-  background: #ef4444;
-  border-color: #ef4444;
+  background: #dc2626;
+  border-color: #dc2626;
   color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
 }
 
 .cart-item-remove-btn:active {
@@ -3948,6 +4032,7 @@ body.order-mode-manual #btn-copy-phone-to-wa {
 .cart-item-remove-btn svg {
   transition: transform var(--transition-fast);
   color: currentColor;
+  flex-shrink: 0;
 }
 
 .cart-item-remove-btn:hover svg {
@@ -3962,18 +4047,19 @@ body.order-mode-manual #btn-copy-phone-to-wa {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   color: #f4eedb;
   font-size: 0.76rem;
   letter-spacing: 0.14em;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  padding: 0.72rem 1.4rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: all var(--transition-fast);
   font-family: var(--font-sans);
+  line-height: 1;
 }
 
 .btn-clear-bag:hover,
@@ -3982,7 +4068,12 @@ body.order-mode-manual #btn-copy-phone-to-wa {
   border-color: rgba(239, 68, 68, 0.6);
   color: #fca5a5;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+}
+
+.btn-clear-bag:active,
+#btn-clear-entire-cart:active {
+  transform: translateY(0);
 }
 
 /* ==========================================================================

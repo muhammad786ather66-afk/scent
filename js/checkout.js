@@ -154,14 +154,44 @@ const WHATSAPP_NUMBER = "";
     }
   }
 
+  // Pre-cache Web Speech voices
+  let cachedVoices = [];
+  function populateVoiceList() {
+    if ('speechSynthesis' in window) {
+      cachedVoices = window.speechSynthesis.getVoices();
+    }
+  }
+  populateVoiceList();
+  if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
   /**
    * Play professional chime + luxury audio voice message on order submission
    */
+  let isCurrentlySpeaking = false;
   function playOrderVoiceMessage(customerName, orderRef) {
     const voiceCard = document.getElementById('voice-confirmation-card');
     const voiceBtnLabel = document.getElementById('voice-btn-label');
+    const voiceCardText = document.getElementById('voice-card-text');
 
-    // 1. Play luxury harmonic chime via Web Audio API
+    // If currently speaking, stop it
+    if (isCurrentlySpeaking && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      isCurrentlySpeaking = false;
+      if (voiceCard) voiceCard.classList.remove('is-speaking');
+      if (voiceBtnLabel) voiceBtnLabel.textContent = 'REPLAY VOICE';
+      return;
+    }
+
+    const firstName = customerName ? customerName.trim().split(' ')[0] : '';
+    const spokenText = `Thank you ${firstName ? firstName : 'valued customer'} for choosing VELORA Haute Parfumerie. Your bespoke Cash on Delivery order has been successfully placed under reference ${orderRef || 'VL-ORDER'}. Our dispatch atelier is now preparing your handcrafted flacons, and our courier will deliver them directly to your doorstep. Wear your presence.`;
+
+    if (voiceCardText) {
+      voiceCardText.textContent = `"${spokenText}"`;
+    }
+
+    // 1. Play luxury harmonic concierge chime via Web Audio API
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (AudioCtx) {
@@ -172,11 +202,11 @@ const WHATSAPP_NUMBER = "";
 
         const now = ctx.currentTime;
 
-        // Note 1: F5 (698.46 Hz)
+        // Note 1: C5 (523.25 Hz)
         const osc1 = ctx.createOscillator();
         const gain1 = ctx.createGain();
         osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(698.46, now);
+        osc1.frequency.setValueAtTime(523.25, now);
         gain1.gain.setValueAtTime(0.18, now);
         gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
         osc1.connect(gain1);
@@ -184,62 +214,78 @@ const WHATSAPP_NUMBER = "";
         osc1.start(now);
         osc1.stop(now + 0.6);
 
-        // Note 2: A5 (880 Hz) - gentle luxury resonance
+        // Note 2: G5 (783.99 Hz)
         const osc2 = ctx.createOscillator();
         const gain2 = ctx.createGain();
         osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(880.00, now + 0.18);
-        gain2.gain.setValueAtTime(0.16, now + 0.18);
-        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+        osc2.frequency.setValueAtTime(783.99, now + 0.16);
+        gain2.gain.setValueAtTime(0.16, now + 0.16);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
         osc2.connect(gain2);
         gain2.connect(ctx.destination);
-        osc2.start(now + 0.18);
-        osc2.stop(now + 0.9);
+        osc2.start(now + 0.16);
+        osc2.stop(now + 0.85);
+
+        // Note 3: C6 (1046.50 Hz) - crystalline luxury chime
+        const osc3 = ctx.createOscillator();
+        const gain3 = ctx.createGain();
+        osc3.type = 'sine';
+        osc3.frequency.setValueAtTime(1046.50, now + 0.32);
+        gain3.gain.setValueAtTime(0.14, now + 0.32);
+        gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
+        osc3.connect(gain3);
+        gain3.connect(ctx.destination);
+        osc3.start(now + 0.32);
+        osc3.stop(now + 1.1);
       }
     } catch (err) {
-      console.warn('Audio chime notice:', err);
+      console.warn('Concierge audio notice:', err);
     }
 
     // 2. Play professional voice message via Web Speech Synthesis API
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel(); // Stop any pending speech
 
-      const firstName = customerName ? customerName.split(' ')[0] : '';
-      const spokenText = `Thank you ${firstName ? firstName : ''} for shopping VELORA Haute Parfumerie. Your bespoke Cash on Delivery order has been successfully placed. Our dispatch atelier is now preparing your handcrafted flacons, and our courier will deliver them directly to your doorstep. Wear your presence.`;
-
       const utterance = new SpeechSynthesisUtterance(spokenText);
       utterance.rate = 0.92;
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
 
+      if (!cachedVoices || cachedVoices.length === 0) {
+        cachedVoices = window.speechSynthesis.getVoices();
+      }
+
       // Select highest quality English voice available
-      const voices = window.speechSynthesis.getVoices();
-      const luxuryVoice = voices.find(v => 
+      const luxuryVoice = cachedVoices.find(v => 
         v.lang.startsWith('en') && (
           v.name.includes('Google') || 
           v.name.includes('Natural') || 
           v.name.includes('Samantha') || 
           v.name.includes('Serena') || 
           v.name.includes('Daniel') || 
+          v.name.includes('Victoria') ||
           v.name.includes('Premium') ||
           v.name.includes('en-GB') || 
           v.name.includes('en-US')
         )
-      ) || voices.find(v => v.lang.startsWith('en'));
+      ) || cachedVoices.find(v => v.lang.startsWith('en'));
 
       if (luxuryVoice) utterance.voice = luxuryVoice;
 
       utterance.onstart = () => {
+        isCurrentlySpeaking = true;
         if (voiceCard) voiceCard.classList.add('is-speaking');
-        if (voiceBtnLabel) voiceBtnLabel.textContent = 'SPEAKING...';
+        if (voiceBtnLabel) voiceBtnLabel.textContent = 'STOP VOICE';
       };
 
       utterance.onend = () => {
+        isCurrentlySpeaking = false;
         if (voiceCard) voiceCard.classList.remove('is-speaking');
         if (voiceBtnLabel) voiceBtnLabel.textContent = 'REPLAY VOICE';
       };
 
       utterance.onerror = () => {
+        isCurrentlySpeaking = false;
         if (voiceCard) voiceCard.classList.remove('is-speaking');
         if (voiceBtnLabel) voiceBtnLabel.textContent = 'REPLAY VOICE';
       };
@@ -247,15 +293,18 @@ const WHATSAPP_NUMBER = "";
       // Slight timeout to let the chime sound first
       setTimeout(() => {
         window.speechSynthesis.speak(utterance);
-      }, 450);
+      }, 500);
     } else {
       // If speech synthesis not supported, pulse equalizer briefly
       if (voiceCard) {
         voiceCard.classList.add('is-speaking');
-        setTimeout(() => voiceCard.classList.remove('is-speaking'), 3000);
+        setTimeout(() => voiceCard.classList.remove('is-speaking'), 3500);
       }
     }
   }
+
+  // Expose globally
+  window.playVeloraOrderVoiceMessage = playOrderVoiceMessage;
 
   /**
    * Render dynamic cart items in checkout side summary
