@@ -31,6 +31,11 @@
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Theme Preference Initialization -->
+    <script>
+      (function(){try{var t=localStorage.getItem('velora_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+    </script>
   </head>
   <body>
     <!-- Accessibility Skip Link -->
@@ -81,6 +86,24 @@
               <path fill="#FFFFFF" d="M17.47 14.38c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.89-.8-1.5-1.78-1.67-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.23-.24-.6-.49-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
             </svg>
           </a>
+
+          <!-- Theme Toggle (Dark / Light Mode) -->
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Switch Theme" title="Switch Theme">
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
 
           <!-- Cart / Bag link -->
           <a href="cart.html" class="cart-toggle-btn" id="header-cart-toggle" aria-label="View Shopping Bag" title="Shopping Bag">
@@ -143,6 +166,25 @@
           </a>
         </li>
       </ul>
+
+      <!-- Mobile Theme Toggle Option -->
+      <div class="mobile-drawer-theme-toggle">
+        <button type="button" class="mobile-theme-row-btn" aria-label="Toggle Light or Dark Theme">
+          <span>Theme Mode</span>
+          <span class="mobile-theme-switch-indicator">
+            <svg class="theme-icon theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="mobile-theme-mode-text">Dark Mode</span>
+          </span>
+        </button>
+      </div>
+
       <div class="mobile-nav-footer">
         <p class="mobile-tagline">VELORA — Wear Your Presence.</p>
         <a href="collection.html" class="btn btn-primary" style="width: 100%;">
@@ -272,37 +314,7 @@
         </div>
       </section>
 
-      <!-- BRAND STORY STATEMENT -->
-      <section class="section section-tight" id="brand-story" style="background-color: var(--color-bg-surface);">
-        <div class="container text-center" style="max-width: 860px; margin: 0 auto;">
-          <span class="section-eyebrow">Brand Philosophy</span>
-          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 1.25rem;">
-            A fragrance is more than a scent.
-          </h2>
-          <p style="margin: 0 auto 2.5rem; font-size: 1.15rem; color: #cfd0d8;">
-            It becomes part of who you are, how you carry yourself, and how others remember you.
-          </p>
 
-          <div class="story-grid">
-            <div class="story-card">
-              <div class="story-card-number">PART I</div>
-              <div class="story-card-label">Your identity.</div>
-            </div>
-            <div class="story-card">
-              <div class="story-card-number">PART II</div>
-              <div class="story-card-label">Your confidence.</div>
-            </div>
-            <div class="story-card">
-              <div class="story-card-number">PART III</div>
-              <div class="story-card-label">Your memories.</div>
-            </div>
-            <div class="story-card">
-              <div class="story-card-number">PART IV</div>
-              <div class="story-card-label">Your presence.</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- FINAL CINEMATIC CTA -->
       <section class="section" id="cta-section">

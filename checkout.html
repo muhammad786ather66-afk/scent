@@ -15,6 +15,11 @@
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Theme Preference Initialization -->
+    <script>
+      (function(){try{var t=localStorage.getItem('velora_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+    </script>
   </head>
   <body>
     <!-- Skip link for accessibility -->
@@ -55,6 +60,32 @@
         </nav>
 
         <div class="header-actions">
+          <!-- WhatsApp Header Action Button -->
+          <a href="https://wa.me/923036440752?text=Hello%20VELORA%20Concierge,%20I%20need%20assistance%20with%20my%20checkout." target="_blank" rel="noopener noreferrer" class="header-whatsapp-icon-btn" aria-label="Order via WhatsApp" title="Order via WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+              <path fill="#25D366" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/>
+              <path fill="#FFFFFF" d="M17.47 14.38c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.89-.8-1.5-1.78-1.67-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.23-.24-.6-.49-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
+            </svg>
+          </a>
+
+          <!-- Theme Toggle (Dark / Light Mode) -->
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Switch Theme" title="Switch Theme">
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
           <a href="cart.html" class="cart-toggle-btn" id="header-cart-toggle" aria-label="View Shopping Bag" title="Shopping Bag">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -83,6 +114,25 @@
         <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
         <li><a href="faq.html" class="mobile-nav-link">FAQ</a></li>
       </ul>
+
+      <!-- Mobile Theme Toggle Option -->
+      <div class="mobile-drawer-theme-toggle">
+        <button type="button" class="mobile-theme-row-btn" aria-label="Toggle Light or Dark Theme">
+          <span>Theme Mode</span>
+          <span class="mobile-theme-switch-indicator">
+            <svg class="theme-icon theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="mobile-theme-mode-text">Dark Mode</span>
+          </span>
+        </button>
+      </div>
+
       <div class="mobile-nav-footer">
         <a href="collection.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
           <span>EXPLORE FRAGRANCES</span>
@@ -105,12 +155,12 @@
         </div>
 
         <!-- Empty Cart Notice -->
-        <div id="checkout-empty-notice" style="display: none; text-align: center; padding: 4rem 1.5rem; background: var(--color-bg-surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; max-width: 600px; margin: 0 auto;">
+        <div id="checkout-empty-notice" style="display: none; text-align: center; padding: 4rem 1.5rem; background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 4px; max-width: 600px; margin: 0 auto;">
           <div style="width: 56px; height: 56px; margin: 0 auto 1.25rem; border: 1px solid var(--color-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-gold);">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
           </div>
-          <h2 style="font-family: var(--font-serif); font-size: 1.6rem; color: #fff; margin-bottom: 0.75rem;">Your Shopping Bag is Empty</h2>
-          <p style="color: #a1a1aa; font-size: 0.95rem; margin-bottom: 2rem;">Please choose your preferred VELORA fragrance before proceeding with checkout.</p>
+          <h2 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-ivory); margin-bottom: 0.75rem;">Your Shopping Bag is Empty</h2>
+          <p style="color: var(--color-muted); font-size: 0.95rem; margin-bottom: 2rem;">Please choose your preferred VELORA fragrance before proceeding with checkout.</p>
           <a href="collection.html" class="btn btn-primary" style="padding: 0.85rem 2rem;">EXPLORE COLLECTION</a>
         </div>
 
@@ -264,8 +314,8 @@
               </svg>
             </div>
             <span class="section-kicker" style="color: var(--color-gold); font-size: 0.8rem; letter-spacing: 0.15em;">ORDER CONFIRMED</span>
-            <h2 id="success-customer-greeting" style="font-family: var(--font-serif); font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0.5rem 0 1rem; color: #ffffff;">Thank you! Your order has been placed.</h2>
-            <p style="color: #d1d5db; font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+            <h2 id="success-customer-greeting" style="font-family: var(--font-serif); font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0.5rem 0 1rem; color: var(--color-ivory);">Thank you! Your order has been placed.</h2>
+            <p style="color: var(--color-muted); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6;">
               We have received your Cash on Delivery order and our dispatch atelier is preparing your fragrance.
             </p>
 
@@ -295,39 +345,39 @@
                     </svg>
                     <span id="voice-btn-label">REPLAY VOICE</span>
                   </button>
-                  <span style="font-size: 0.72rem; color: #a1a1aa; letter-spacing: 0.05em;">Auditory Dispatch Confirmation</span>
+                  <span style="font-size: 0.72rem; color: var(--color-muted); letter-spacing: 0.05em;">Auditory Dispatch Confirmation</span>
                 </div>
               </div>
             </div>
 
-            <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 1.5rem; text-align: left; margin-bottom: 2rem;">
-              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                <span style="color: #9ca3af; font-size: 0.88rem;">Order Number</span>
+            <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: 4px; padding: 1.5rem; text-align: left; margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span style="color: var(--color-muted); font-size: 0.88rem;">Order Number</span>
                 <strong id="success-order-number" style="color: var(--color-gold); font-family: var(--font-mono, monospace);">#VL-924108</strong>
               </div>
-              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                <span style="color: #9ca3af; font-size: 0.88rem;">Payment Method</span>
-                <strong style="color: #ffffff; font-size: 0.88rem;">Cash on Delivery (Free Delivery)</strong>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span style="color: var(--color-muted); font-size: 0.88rem;">Payment Method</span>
+                <strong style="color: var(--color-ivory); font-size: 0.88rem;">Cash on Delivery (Free Delivery)</strong>
               </div>
-              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                <span style="color: #9ca3af; font-size: 0.88rem;">Customer Name</span>
-                <strong id="success-customer-name" style="color: #ffffff; font-size: 0.88rem;">-</strong>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span style="color: var(--color-muted); font-size: 0.88rem;">Customer Name</span>
+                <strong id="success-customer-name" style="color: var(--color-ivory); font-size: 0.88rem;">-</strong>
               </div>
-              <div id="success-contact-row" style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                <span id="success-contact-label" style="color: #9ca3af; font-size: 0.88rem;">Mobile Contact</span>
-                <strong id="success-customer-whatsapp" style="color: #4ade80; font-size: 0.88rem;">-</strong>
+              <div id="success-contact-row" style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span id="success-contact-label" style="color: var(--color-muted); font-size: 0.88rem;">Mobile Contact</span>
+                <strong id="success-customer-whatsapp" style="color: #22c55e; font-size: 0.88rem;">-</strong>
               </div>
-              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
-                <span style="color: #9ca3af; font-size: 0.88rem;">Delivery Address</span>
-                <strong id="success-delivery-address" style="color: #ffffff; font-size: 0.88rem; text-align: right; max-width: 60%;">-</strong>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span style="color: var(--color-muted); font-size: 0.88rem;">Delivery Address</span>
+                <strong id="success-delivery-address" style="color: var(--color-ivory); font-size: 0.88rem; text-align: right; max-width: 60%;">-</strong>
               </div>
               <div style="display: flex; justify-content: space-between; padding: 0.75rem 0 0.25rem;">
-                <span style="color: #ffffff; font-weight: 700; font-size: 1rem;">Total Amount to Pay</span>
+                <span style="color: var(--color-ivory); font-weight: 700; font-size: 1rem;">Total Amount to Pay</span>
                 <strong id="success-total-price" style="color: var(--color-gold); font-size: 1.25rem; font-family: var(--font-serif);">PKR 0,000</strong>
               </div>
             </div>
 
-            <p style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 1.5rem;">
+            <p style="color: var(--color-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">
               Our courier will coordinate with you on your mobile number prior to doorstep delivery.
             </p>
 

@@ -12,7 +12,22 @@
  * - Static contact form interaction
  */
 
+// Immediate theme application to prevent flash of wrong theme
+(function() {
+  try {
+    const saved = localStorage.getItem('velora_theme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {
+    // Local storage unavailable
+  }
+})();
+
 function initAll() {
+  initTheme();
   initHeader();
   initMobileMenu();
   initFaqAccordion();
@@ -437,5 +452,58 @@ function initWhatsAppFloatingBtn() {
       <span class="floating-whatsapp-phone">Order via WhatsApp</span>
     </div>
   `;
+}
+
+/**
+ * VELORA LUXURY THEME ENGINE (DARK & LIGHT MODE)
+ * Provides smooth background transitions and persistent theme state
+ */
+function getPreferredTheme() {
+  try {
+    const saved = localStorage.getItem('velora_theme');
+    if (saved === 'light' || saved === 'dark') {
+      return saved;
+    }
+  } catch (e) {}
+  return 'dark'; // Default luxury midnight aesthetic
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try {
+    localStorage.setItem('velora_theme', theme);
+  } catch (e) {}
+
+  const isDark = theme === 'dark';
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+  });
+
+  document.querySelectorAll('.mobile-theme-mode-text').forEach(el => {
+    el.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  });
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  setTheme(next);
+}
+
+function initTheme() {
+  const currentTheme = getPreferredTheme();
+  setTheme(currentTheme);
+
+  // Attach click listeners to all desktop and mobile theme toggle triggers
+  document.querySelectorAll('.theme-toggle-btn, .mobile-theme-row-btn').forEach(btn => {
+    // Avoid double binding
+    if (btn.dataset.themeBound) return;
+    btn.dataset.themeBound = 'true';
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleTheme();
+    });
+  });
 }
 
