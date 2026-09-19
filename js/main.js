@@ -12,14 +12,14 @@
  * - Static contact form interaction
  */
 
-// Immediate theme application to prevent flash of wrong theme
+// Immediate theme application to prevent flash of wrong theme (default to light mode)
 (function() {
   try {
     const saved = localStorage.getItem('velora_theme');
-    if (saved === 'light' || saved === 'dark') {
+    if (saved === 'dark' || saved === 'light') {
       document.documentElement.setAttribute('data-theme', saved);
     } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   } catch (e) {
     // Local storage unavailable
@@ -461,11 +461,11 @@ function initWhatsAppFloatingBtn() {
 function getPreferredTheme() {
   try {
     const saved = localStorage.getItem('velora_theme');
-    if (saved === 'light' || saved === 'dark') {
+    if (saved === 'dark' || saved === 'light') {
       return saved;
     }
   } catch (e) {}
-  return 'dark'; // Default luxury midnight aesthetic
+  return 'light'; // Default to light mode as requested
 }
 
 function setTheme(theme) {

@@ -4586,26 +4586,26 @@ button.btn-clear-bag:hover,
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
-/* In dark mode: Show Sun icon (indicates toggle to light) */
-:root:not([data-theme="light"]) .theme-icon-moon,
-[data-theme="dark"] .theme-icon-moon {
-  display: none !important;
-}
-
-:root:not([data-theme="light"]) .theme-icon-sun,
-[data-theme="dark"] .theme-icon-sun {
-  display: block !important;
-  color: #edd094;
-}
-
-/* In light mode: Show Moon icon (indicates toggle to dark) */
+/* In light mode (default): Show Moon icon (indicates toggle to dark) */
+:root:not([data-theme="dark"]) .theme-icon-sun,
 [data-theme="light"] .theme-icon-sun {
   display: none !important;
 }
 
+:root:not([data-theme="dark"]) .theme-icon-moon,
 [data-theme="light"] .theme-icon-moon {
   display: block !important;
   color: #7b5b1a;
+}
+
+/* In dark mode: Show Sun icon (indicates toggle to light) */
+[data-theme="dark"] .theme-icon-moon {
+  display: none !important;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: block !important;
+  color: #edd094;
 }
 
 [data-theme="light"] .theme-toggle-btn {
