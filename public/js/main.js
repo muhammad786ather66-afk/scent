@@ -195,10 +195,44 @@ function renderDynamicCollections() {
   }
   window.attachVeloraCardEvents = attachCardListeners;
 
+  function buildCompleteWhatsAppOrderUrl(p, quantity = 1) {
+    const qty = Math.max(1, parseInt(quantity, 10) || 1);
+    const unitPrice = p.price || 'PKR 3,000';
+    const numPrice = p.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 3000);
+    const totalDue = 'PKR ' + (numPrice * qty).toLocaleString();
+    const type = p.type || 'Extrait de Parfum';
+    const size = p.size || '50 ML';
+
+    const message = 
+`*VELORA HAUTE PARFUMERIE — OFFICIAL ORDER*
+────────────────────────
+*ORDER DETAILS:*
+• Fragrance: *${p.name}*
+• Concentration: ${type}
+• Volume: ${size} (1.7 FL. OZ.)
+• Unit Price: ${unitPrice}
+• Quantity: ${qty} flacon(s)
+• Delivery: FREE Nationwide Express Delivery
+• Payment: Cash on Delivery (COD)
+• *TOTAL AMOUNT DUE:* *${totalDue}*
+────────────────────────
+*CUSTOMER DELIVERY INFORMATION:*
+• Full Name: 
+• Mobile / WhatsApp Number: 
+• City: 
+• Complete Street Delivery Address: 
+• Nearest Landmark / Notes: 
+
+Please confirm my order and arrange doorstep dispatch. Thank you!`;
+
+    return `https://wa.me/923036440752?text=${encodeURIComponent(message)}`;
+  }
+  window.buildCompleteWhatsAppOrderUrl = buildCompleteWhatsAppOrderUrl;
+
   function createCardHtml(p, index) {
     // Primary hero/first image eager load, others lazy
     const isLazy = index > 1 ? 'loading="lazy"' : 'loading="eager"';
-    const waOrderUrl = `https://wa.me/923036440752?text=${encodeURIComponent('Hello VELORA Concierge, I would like to order ' + p.name + ' (50 ML Eau de Parfum - ' + p.price + ').')}`;
+    const waOrderUrl = buildCompleteWhatsAppOrderUrl(p, 1);
 
     return `
       <article class="product-card" data-product-id="${p.id}">
