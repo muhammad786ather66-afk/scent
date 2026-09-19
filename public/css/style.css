@@ -603,12 +603,13 @@ button, input, textarea, select {
    ========================================================================== */
 .hero-section {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
+  min-height: auto;
   display: flex;
   align-items: center;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  justify-content: center;
+  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
-  background: radial-gradient(circle at 60% 40%, #151824 0%, var(--color-bg-deep) 70%);
+  background: radial-gradient(circle at 50% 40%, #161a29 0%, var(--color-bg-deep) 75%);
 }
 
 .hero-grid {
@@ -618,20 +619,16 @@ button, input, textarea, select {
   align-items: center;
 }
 
-@media (min-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-}
-
 .hero-content {
   z-index: 2;
   text-align: center;
+  max-width: 68ch;
+  margin: 0 auto;
 }
 
 @media (min-width: 900px) {
   .hero-content {
-    text-align: left;
+    text-align: center;
   }
 }
 
@@ -669,11 +666,11 @@ button, input, textarea, select {
 }
 
 .hero-desc {
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
-  color: #cfd0d6;
-  margin-bottom: 2rem;
-  line-height: 1.7;
-  max-width: 52ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  color: #d1d5db;
+  margin: 0 auto;
+  line-height: 1.75;
+  max-width: 54ch;
 }
 
 @media (max-width: 899px) {
