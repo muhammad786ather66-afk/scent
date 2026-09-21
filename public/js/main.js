@@ -209,9 +209,9 @@ function renderDynamicCollections() {
 
   function buildCompleteWhatsAppOrderUrl(p, quantity = 1) {
     const qty = Math.max(1, parseInt(quantity, 10) || 1);
-    const unitPrice = p.price || 'PKR 3,000';
-    const numPrice = p.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 3000);
-    const totalDue = 'PKR ' + (numPrice * qty).toLocaleString();
+    const unitPrice = p.price || 'Rs. 1,899';
+    const numPrice = p.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 1899);
+    const totalDue = 'Rs. ' + (numPrice * qty).toLocaleString();
     const type = p.type || 'Extrait de Parfum';
     const size = p.size || '50 ML';
 
@@ -222,7 +222,7 @@ function renderDynamicCollections() {
 • Fragrance: *${p.name}*
 • Concentration: ${type}
 • Volume: ${size} (1.7 FL. OZ.)
-• Unit Price: ${unitPrice}
+• Unit Price: ${unitPrice} (Discounted from ${p.originalPrice || 'Rs. 3,000'})
 • Quantity: ${qty} flacon(s)
 • Delivery: FREE Nationwide Express Delivery
 • Payment: Cash on Delivery (COD)
@@ -284,9 +284,13 @@ Please confirm my order and arrange doorstep dispatch. Thank you!`;
         </h3>
         <p class="product-card-desc">${p.description}</p>
         <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
-            <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
+          <div class="product-pricing-wrapper" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.35rem;">
+            <div class="product-pricing-stack" style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="product-price-original price-double-strike" title="Original Price: ${p.originalPrice || 'Rs. 3,000'}">${p.originalPrice || 'Rs. 3,000'}</span>
+              <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
+              <span class="product-discount-pill">${p.discountBadge || 'SAVE'}</span>
+            </div>
+            <span class="product-free-shipping" style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
           </div>
           <!-- Below: Details and Order Now button (item added to cart and checkout) -->
           <div class="product-card-cta-group" style="width: 100%; display: flex; gap: 0.5rem;">

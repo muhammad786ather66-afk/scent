@@ -15,10 +15,10 @@
   const STORAGE_KEY = 'velora_cart';
 
   const VELORA_CANONICAL_PRICES = {
-    'midnight': { name: 'MIDNIGHT', numericPrice: 3000, price: 'PKR 3,000' },
-    'silver-storm': { name: 'SILVER STORM', numericPrice: 2000, price: 'PKR 2,000' },
-    'royal-dusk': { name: 'ROYAL DUSK', numericPrice: 2500, price: 'PKR 2,500' },
-    'noir-vanilla': { name: 'NOIR VANILLA', numericPrice: 1800, price: 'PKR 1,800' }
+    'midnight': { name: 'MIDNIGHT', numericPrice: 1899, price: 'Rs. 1,899', originalPrice: 'Rs. 3,000', discountBadge: '37% OFF' },
+    'silver-storm': { name: 'SILVER STORM', numericPrice: 2000, price: 'Rs. 2,000', originalPrice: 'Rs. 3,000', discountBadge: '33% OFF' },
+    'royal-dusk': { name: 'ROYAL DUSK', numericPrice: 2199, price: 'Rs. 2,199', originalPrice: 'Rs. 3,000', discountBadge: '27% OFF' },
+    'noir-vanilla': { name: 'NOIR VANILLA', numericPrice: 1800, price: 'Rs. 1,800', originalPrice: 'Rs. 3,000', discountBadge: '40% OFF' }
   };
 
   /**
@@ -155,7 +155,7 @@
     const enrichedItems = cart.map(item => {
       const cleanId = String(item.id).trim().toLowerCase();
       const product = window.getVeloraProductById ? window.getVeloraProductById(cleanId) : null;
-      const canonical = VELORA_CANONICAL_PRICES[cleanId] || { name: cleanId.toUpperCase(), numericPrice: 2000, price: 'PKR 2,000' };
+      const canonical = VELORA_CANONICAL_PRICES[cleanId] || { name: cleanId.toUpperCase(), numericPrice: 1899, price: 'Rs. 1,899', originalPrice: 'Rs. 3,000', discountBadge: '37% OFF' };
 
       totalCount += item.quantity;
 
@@ -173,11 +173,13 @@
         quantity: item.quantity,
         unitPrice: unitPrice,
         lineTotal: itemSubtotal,
-        lineTotalDisplay: `PKR ${itemSubtotal.toLocaleString()}`,
+        lineTotalDisplay: `Rs. ${itemSubtotal.toLocaleString()}`,
         product: product || {
           id: cleanId,
           name: canonical.name,
           price: displayPrice,
+          originalPrice: canonical.originalPrice || 'Rs. 3,000',
+          discountBadge: canonical.discountBadge || 'SPECIAL OFFER',
           size: '50 ML',
           type: 'EAU DE PARFUM',
           image: `assets/images/${cleanId}.webp`,
@@ -187,7 +189,7 @@
       };
     });
 
-    const subtotalDisplay = `PKR ${numericSubtotal.toLocaleString()}`;
+    const subtotalDisplay = `Rs. ${numericSubtotal.toLocaleString()}`;
 
     return {
       items: enrichedItems,

@@ -351,8 +351,11 @@ const WHATSAPP_NUMBER = "";
           <div class="checkout-product-meta">
             <span class="checkout-product-specs">${item.product.type || 'EAU DE PARFUM'} &bull; ${item.product.size || '50 ML'}</span>
             <h3 class="checkout-product-title">${item.product.name}</h3>
-            <div class="checkout-product-price-row">
-              <span class="checkout-product-price">${item.lineTotalDisplay || item.product.price}</span>
+            <div class="checkout-product-price-row" style="display: flex; align-items: baseline; justify-content: space-between;">
+              <div style="display: flex; align-items: baseline; gap: 0.45rem;">
+                <span class="price-double-strike" style="font-size: 0.82rem; color: #8c8070;">${item.product.originalPrice || 'Rs. 3,000'}</span>
+                <span class="checkout-product-price">${item.lineTotalDisplay || item.product.price}</span>
+              </div>
               ${item.quantity > 1 ? `<span class="checkout-product-qty-tag">(${item.product.price} each)</span>` : `<span class="checkout-product-qty-tag">50 ML</span>`}
             </div>
           </div>
@@ -376,7 +379,7 @@ const WHATSAPP_NUMBER = "";
             <span class="checkout-item-qty">Qty: ${item.quantity}</span>
           </div>
           <div class="checkout-item-price">
-            ${item.lineTotalDisplay || item.product.price || 'PKR 0,000'}
+            ${item.lineTotalDisplay || item.product.price || 'Rs. 0'}
           </div>
         </li>
       `).join('');

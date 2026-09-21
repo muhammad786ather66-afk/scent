@@ -5313,5 +5313,140 @@ button.btn-clear-bag:hover,
   color: #ffffff !important;
 }
 
+/* ==========================================================================
+   VELORA PROMOTIONAL PRICING & DOUBLE-STRIKE SYSTEM
+   ========================================================================== */
+
+.product-pricing-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.product-pricing-stack {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Authentic Double Strike Line (cuts cleanly through original price) */
+.price-double-strike {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: #8c8275;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.price-double-strike::before,
+.price-double-strike::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  height: 1.5px;
+  background: #c5a059;
+  pointer-events: none;
+  border-radius: 1px;
+}
+
+.price-double-strike::before {
+  top: 38%;
+}
+
+.price-double-strike::after {
+  top: 60%;
+}
+
+[data-theme="light"] .price-double-strike {
+  color: #78716c;
+}
+
+[data-theme="light"] .price-double-strike::before,
+[data-theme="light"] .price-double-strike::after {
+  background: #b45309;
+}
+
+[data-theme="dark"] .price-double-strike {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .price-double-strike::before,
+[data-theme="dark"] .price-double-strike::after {
+  background: #e5a93c;
+}
+
+/* Discount Badges & Highlight Tags */
+.product-discount-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.18rem 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+[data-theme="dark"] .product-discount-pill {
+  background: rgba(197, 160, 89, 0.18);
+  color: #f1c76e;
+  border-color: rgba(197, 160, 89, 0.45);
+}
+
+.detail-price-original {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #8c8275;
+  position: relative;
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+.detail-discount-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .detail-discount-badge {
+  background: rgba(197, 160, 89, 0.2);
+  color: #f5cf7c;
+  border-color: rgba(197, 160, 89, 0.5);
+}
+
+.product-free-shipping {
+  font-size: 0.75rem;
+  color: #c5a059;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
 
 

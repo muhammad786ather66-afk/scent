@@ -29,6 +29,8 @@ function renderProductDetail() {
   const typeElem = document.getElementById('detail-product-type');
   const sizeElem = document.getElementById('detail-product-size');
   const priceElem = document.getElementById('detail-product-price');
+  const originalPriceElem = document.getElementById('detail-product-original-price');
+  const discountElem = document.getElementById('detail-product-discount');
   const descElem = document.getElementById('detail-product-desc');
   const imgElem = document.getElementById('detail-product-img');
   const characterElem = document.getElementById('detail-character');
@@ -41,6 +43,8 @@ function renderProductDetail() {
   if (typeElem) typeElem.textContent = product.type;
   if (sizeElem) sizeElem.textContent = product.size;
   if (priceElem) priceElem.textContent = product.price;
+  if (originalPriceElem) originalPriceElem.textContent = product.originalPrice || 'Rs. 3,000';
+  if (discountElem) discountElem.textContent = product.discountBadge || 'SPECIAL OFFER';
   if (descElem) descElem.textContent = product.description;
 
   if (characterElem) characterElem.textContent = product.character || 'Contemporary Luxury';
@@ -71,9 +75,9 @@ function renderProductDetail() {
     const waImageBtn = document.getElementById('btn-image-detail-whatsapp');
     const waStageBadge = document.getElementById('detail-stage-whatsapp-badge');
     
-    const unitPrice = product.price || 'PKR 3,000';
-    const numPrice = product.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 3000);
-    const totalDue = 'PKR ' + (numPrice * currentQty).toLocaleString();
+    const unitPrice = product.price || 'Rs. 1,899';
+    const numPrice = product.numericPrice || (parseInt(unitPrice.replace(/[^0-9]/g, ''), 10) || 1899);
+    const totalDue = 'Rs. ' + (numPrice * currentQty).toLocaleString();
     const type = product.type || 'Extrait de Parfum';
     const size = product.size || '50 ML';
 
@@ -84,7 +88,7 @@ function renderProductDetail() {
 • Fragrance: *${product.name}*
 • Concentration: ${type}
 • Volume: ${size} (1.7 FL. OZ.)
-• Unit Price: ${unitPrice}
+• Unit Price: ${unitPrice} (Discounted from ${product.originalPrice || 'Rs. 3,000'})
 • Quantity: ${currentQty} flacon(s)
 • Delivery: FREE Nationwide Express Delivery
 • Payment: Cash on Delivery (COD)
@@ -245,9 +249,13 @@ function renderRelatedFragrances(currentId) {
       </h3>
       <p class="product-card-desc">${p.description}</p>
       <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-          <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
-          <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
+        <div class="product-pricing-wrapper" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.35rem;">
+          <div class="product-pricing-stack" style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="product-price-original price-double-strike" title="Original Price: ${p.originalPrice || 'Rs. 3,000'}">${p.originalPrice || 'Rs. 3,000'}</span>
+            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
+            <span class="product-discount-pill">${p.discountBadge || 'SAVE'}</span>
+          </div>
+          <span class="product-free-shipping" style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
         </div>
         <!-- Below: Details and Order Now button (item added to cart and checkout) -->
         <div class="product-card-cta-group" style="width: 100%; display: flex; gap: 0.5rem;">
