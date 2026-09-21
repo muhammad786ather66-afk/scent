@@ -1,6 +1,6 @@
 # VELORA — Luxury Fragrance House Website
 
-> **"Wear Your Presence."**
+> **"Where Scent Becomes Memory"**
 
 VELORA is a production-ready, ultra-premium static perfume brand website crafted for elegance, confidence, individuality, and unforgettable presence. 
 

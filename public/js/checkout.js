@@ -185,7 +185,7 @@ const WHATSAPP_NUMBER = "";
     }
 
     const firstName = customerName ? customerName.trim().split(' ')[0] : '';
-    const spokenText = `Thank you ${firstName ? firstName : 'valued customer'} for choosing VELORA Haute Parfumerie. Your bespoke Cash on Delivery order has been successfully placed under reference ${orderRef || 'VL-ORDER'}. Our dispatch atelier is now preparing your handcrafted flacons, and our courier will deliver them directly to your doorstep. Wear your presence.`;
+    const spokenText = `Thank you ${firstName ? firstName : 'valued customer'} for choosing VELORA Haute Parfumerie. Your bespoke Cash on Delivery order has been successfully placed under reference ${orderRef || 'VL-ORDER'}. Our dispatch atelier is now preparing your handcrafted flacons, and our courier will deliver them directly to your doorstep. Where Scent Becomes Memory.`;
 
     if (voiceCardText) {
       voiceCardText.textContent = `"${spokenText}"`;

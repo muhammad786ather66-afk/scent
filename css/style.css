@@ -512,9 +512,78 @@ button, input, textarea, select {
 }
 
 @media (max-width: 719px) {
+  .site-header {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .header-inner {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    gap: 0.5rem;
+    margin-right: auto;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-logo-emblem {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand-logo-text {
+    font-size: 1.25rem;
+    letter-spacing: 0.18em;
+  }
+
+  .brand-logo-tagline {
+    display: none !important;
+  }
+
   .header-actions {
     margin-left: auto;
-    gap: 0.45rem;
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+
+  .header-whatsapp-icon-btn,
+  .theme-toggle-btn,
+  .cart-toggle-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .header-whatsapp-icon-btn svg,
+  .cart-toggle-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 6px !important;
+    margin-left: 0.15rem;
+    flex-shrink: 0 !important;
+  }
+
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+    margin: 2.5px 0;
   }
 }
 
@@ -2702,6 +2771,105 @@ button, input, textarea, select {
   border-color: var(--color-gold);
   background: rgba(197, 160, 89, 0.08);
   transform: translateY(-2px);
+}
+
+/* Official Atelier Connect Badges & Website Link */
+.atelier-official-connect {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.atelier-connect-centered {
+  align-items: center;
+  text-align: center;
+}
+
+.atelier-connect-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+.atelier-connect-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.atelier-connect-centered .atelier-connect-badges {
+  justify-content: center;
+}
+
+.atelier-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.15rem;
+  background: rgba(197, 160, 89, 0.08);
+  border: 1px solid var(--color-gold-border);
+  border-radius: 999px;
+  color: var(--color-ivory);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.atelier-badge-link:hover {
+  background: var(--color-gold);
+  color: #050608 !important;
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+[data-theme="light"] .atelier-badge-link {
+  background: #ffffff;
+  border-color: rgba(150, 114, 40, 0.28);
+  color: #111319;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .atelier-badge-link:hover {
+  background: var(--color-gold);
+  color: #ffffff !important;
+  border-color: var(--color-gold);
+}
+
+.footer-official-web {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.footer-website-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-gold);
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.footer-website-link:hover {
+  color: var(--color-gold-light);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .footer-website-link {
+  color: #8b6820;
 }
 
 .footer-column-heading {

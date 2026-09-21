@@ -71,7 +71,7 @@
         letter-spacing="7" 
         fill="url(#goldAccent)" 
         text-anchor="middle">
-    WEAR YOUR PRESENCE
+    WHERE SCENT BECOMES MEMORY
   </text>
   <line x1="160" y1="205" x2="440" y2="205" stroke="url(#goldAccent)" stroke-width="1" stroke-opacity="0.4" />
 </svg>
