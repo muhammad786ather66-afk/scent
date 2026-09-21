@@ -1761,21 +1761,21 @@ button, input, textarea, select {
   font-size: 0.875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #cfd0d8;
+  color: var(--color-silver);
 }
 
 .detail-price {
   font-family: var(--font-serif);
   font-size: 1.85rem;
   color: var(--color-ivory);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
 .detail-description {
   font-size: 1.05rem;
   line-height: 1.75;
-  color: #d1d1d8;
+  color: var(--color-champagne);
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--color-border);
@@ -1791,10 +1791,25 @@ button, input, textarea, select {
 
 .detail-specs-list li {
   font-size: 0.875rem;
-  color: #a1a1aa;
+  color: var(--color-muted);
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
+}
+
+.detail-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.detail-qty-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-silver);
 }
 
 .detail-specs-list li::before {
@@ -3433,8 +3448,8 @@ button, input, textarea, select {
 
 .qty-stepper-control:hover,
 .qty-stepper-control:focus-within {
-  border-color: var(--color-gold-light);
-  box-shadow: 0 0 16px rgba(197, 160, 89, 0.45);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 16px var(--color-gold-muted);
 }
 
 .qty-stepper-control button.qty-btn,
@@ -3443,9 +3458,9 @@ button.qty-btn,
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  background: #181d2c !important;
+  background: var(--color-bg-surface) !important;
   border: none !important;
-  color: #edd094 !important;
+  color: var(--color-gold) !important;
   width: 40px !important;
   height: 100% !important;
   display: inline-flex !important;
@@ -3464,16 +3479,16 @@ button.qty-btn,
 .qty-stepper-control button.qty-btn:hover:not(:disabled),
 button.qty-btn:hover:not(:disabled),
 .qty-btn:hover:not(:disabled) {
-  background: #c5a059 !important;
-  color: #07090e !important;
+  background: var(--color-gold) !important;
+  color: #ffffff !important;
 }
 
 .qty-stepper-control button.qty-btn:active:not(:disabled),
 button.qty-btn:active:not(:disabled),
 .qty-btn:active:not(:disabled) {
   transform: scale(0.92);
-  background: #edd094 !important;
-  color: #07090e !important;
+  background: var(--color-gold-light) !important;
+  color: #111319 !important;
 }
 
 .qty-stepper-control button.qty-btn:disabled,
@@ -3485,8 +3500,8 @@ button.qty-btn.is-disabled,
   opacity: 0.3 !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
-  background: #0d1017 !important;
-  color: #64748b !important;
+  background: var(--color-bg-surface) !important;
+  color: var(--color-subtle) !important;
 }
 
 .qty-stepper-control button.qty-btn:focus-visible,
@@ -3525,10 +3540,10 @@ button.qty-btn:hover:not(:disabled) svg,
   font-size: 1.05rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #ffffff !important;
-  background: #080a11 !important;
-  border-left: 1px solid rgba(197, 160, 89, 0.3);
-  border-right: 1px solid rgba(197, 160, 89, 0.3);
+  color: var(--color-ivory) !important;
+  background: var(--color-bg-card) !important;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
   user-select: none;
   text-align: center;
   font-variant-numeric: tabular-nums;
@@ -3537,11 +3552,11 @@ button.qty-btn:hover:not(:disabled) svg,
 .qty-number-input {
   width: 52px;
   height: 100%;
-  background: #080a11;
+  background: var(--color-bg-card) !important;
   border: none;
-  border-left: 1px solid rgba(197, 160, 89, 0.25);
-  border-right: 1px solid rgba(197, 160, 89, 0.25);
-  color: #ffffff;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  color: var(--color-ivory) !important;
   font-family: var(--font-mono, monospace);
   font-size: 1.12rem;
   font-weight: 700;
@@ -4964,27 +4979,39 @@ button.btn-clear-bag:hover,
 }
 
 [data-theme="light"] .qty-stepper-control {
-  background: #ffffff;
-  border-color: rgba(150, 114, 40, 0.45);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background: #ffffff !important;
+  border-color: #d6cdbc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="light"] .qty-stepper-control button.qty-btn,
 [data-theme="light"] button.qty-btn,
 [data-theme="light"] .qty-btn {
-  background: #f3eee4 !important;
-  color: #7b5b1a !important;
+  background: #f5f0e6 !important;
+  color: #8b6820 !important;
 }
 
 [data-theme="light"] .qty-stepper-control button.qty-btn:hover:not(:disabled),
 [data-theme="light"] button.qty-btn:hover:not(:disabled),
 [data-theme="light"] .qty-btn:hover:not(:disabled) {
-  background: var(--color-gold) !important;
+  background: #967228 !important;
   color: #ffffff !important;
 }
 
 [data-theme="light"] .qty-stepper-control .qty-value-display,
-[data-theme="light"] .qty-value-display {
+[data-theme="light"] .qty-value-display,
+[data-theme="light"] .qty-number-input {
+  background: #ffffff !important;
+  color: #111319 !important;
+  border-left: 1px solid #d6cdbc !important;
+  border-right: 1px solid #d6cdbc !important;
+}
+
+[data-theme="light"] .product-price,
+[data-theme="light"] .product-card-price,
+[data-theme="light"] .detail-price,
+[data-theme="light"] .checkout-product-price,
+[data-theme="light"] .cart-item-price {
   color: #111319 !important;
 }
 
@@ -5081,5 +5108,42 @@ button.btn-clear-bag:hover,
   color: #ffffff !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+[data-theme="dark"] .qty-stepper-control {
+  background: #11131a !important;
+  border-color: rgba(197, 160, 89, 0.35) !important;
+}
+
+[data-theme="dark"] .qty-stepper-control button.qty-btn,
+[data-theme="dark"] button.qty-btn,
+[data-theme="dark"] .qty-btn {
+  background: #181d2c !important;
+  color: #edd094 !important;
+}
+
+[data-theme="dark"] .qty-stepper-control button.qty-btn:hover:not(:disabled),
+[data-theme="dark"] button.qty-btn:hover:not(:disabled),
+[data-theme="dark"] .qty-btn:hover:not(:disabled) {
+  background: #c5a059 !important;
+  color: #07090e !important;
+}
+
+[data-theme="dark"] .qty-stepper-control .qty-value-display,
+[data-theme="dark"] .qty-value-display,
+[data-theme="dark"] .qty-number-input {
+  background: #0d0f17 !important;
+  color: #ffffff !important;
+  border-left: 1px solid rgba(197, 160, 89, 0.25) !important;
+  border-right: 1px solid rgba(197, 160, 89, 0.25) !important;
+}
+
+[data-theme="dark"] .product-price,
+[data-theme="dark"] .product-card-price,
+[data-theme="dark"] .detail-price,
+[data-theme="dark"] .checkout-product-price,
+[data-theme="dark"] .cart-item-price {
+  color: #ffffff !important;
+}
+
 
 

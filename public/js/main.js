@@ -12,18 +12,15 @@
  * - Static contact form interaction
  */
 
-// Immediate theme application to prevent flash of wrong theme
+// Immediate theme application: Always initialize to Light Mode as website opens
 (function() {
   try {
-    const saved = localStorage.getItem('velora_theme');
-    if (saved === 'light' || saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', saved);
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  } catch (e) {
-    // Local storage unavailable
-  }
+    localStorage.removeItem('velora_theme');
+    localStorage.removeItem('velora_theme_v2');
+    sessionStorage.removeItem('velora_theme');
+    sessionStorage.removeItem('velora_theme_v2');
+  } catch (e) {}
+  document.documentElement.setAttribute('data-theme', 'light');
 })();
 
 function initAll() {
@@ -288,7 +285,7 @@ Please confirm my order and arrange doorstep dispatch. Thank you!`;
         <p class="product-card-desc">${p.description}</p>
         <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
           <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
+            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
             <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
           </div>
           <!-- Below: Details and Order Now button (item added to cart and checkout) -->
@@ -459,22 +456,14 @@ function initWhatsAppFloatingBtn() {
  * Provides smooth background transitions and persistent theme state
  */
 function getPreferredTheme() {
-  try {
-    const saved = localStorage.getItem('velora_theme');
-    if (saved === 'light' || saved === 'dark') {
-      return saved;
-    }
-  } catch (e) {}
-  return 'dark'; // Default luxury midnight aesthetic
+  return 'light'; // Always load in light mode as website opens
 }
 
 function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  try {
-    localStorage.setItem('velora_theme', theme);
-  } catch (e) {}
+  const activeTheme = (theme === 'dark') ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', activeTheme);
 
-  const isDark = theme === 'dark';
+  const isDark = activeTheme === 'dark';
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
     btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     btn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
@@ -486,7 +475,7 @@ function setTheme(theme) {
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
   const next = current === 'dark' ? 'light' : 'dark';
   setTheme(next);
 }

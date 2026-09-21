@@ -285,7 +285,7 @@ Please confirm my order and arrange doorstep dispatch. Thank you!`;
         <p class="product-card-desc">${p.description}</p>
         <div class="product-card-footer" style="flex-direction: column; align-items: stretch; gap: 0.85rem;">
           <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">${p.price}</span>
+            <span class="product-price" style="font-size: 1.35rem; font-weight: 700; color: var(--color-ivory);">${p.price}</span>
             <span style="font-size: 0.75rem; color: #c5a059; letter-spacing: 0.08em; font-weight: 600;">FREE DELIVERY</span>
           </div>
           <!-- Below: Details and Order Now button (item added to cart and checkout) -->
