@@ -12,23 +12,15 @@
  * - Static contact form interaction
  */
 
-// Immediate theme application to prevent flash of wrong theme (Light Mode is default on arrival)
+// Immediate theme application: Always initialize to Light Mode as website opens
 (function() {
   try {
-    // Reset any old test session dark preference so all visitors start in light mode
-    if (localStorage.getItem('velora_theme_v2') === null) {
-      localStorage.removeItem('velora_theme');
-      localStorage.setItem('velora_theme_v2', 'light');
-    }
-    const saved = localStorage.getItem('velora_theme_v2');
-    if (saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  } catch (e) {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
+    localStorage.removeItem('velora_theme');
+    localStorage.removeItem('velora_theme_v2');
+    sessionStorage.removeItem('velora_theme');
+    sessionStorage.removeItem('velora_theme_v2');
+  } catch (e) {}
+  document.documentElement.setAttribute('data-theme', 'light');
 })();
 
 function initAll() {
@@ -464,21 +456,12 @@ function initWhatsAppFloatingBtn() {
  * Provides smooth background transitions and persistent theme state
  */
 function getPreferredTheme() {
-  try {
-    const saved = localStorage.getItem('velora_theme_v2');
-    if (saved === 'dark') {
-      return 'dark';
-    }
-  } catch (e) {}
-  return 'light'; // Default to light mode as requested
+  return 'light'; // Always load in light mode as website opens
 }
 
 function setTheme(theme) {
   const activeTheme = (theme === 'dark') ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', activeTheme);
-  try {
-    localStorage.setItem('velora_theme_v2', activeTheme);
-  } catch (e) {}
 
   const isDark = activeTheme === 'dark';
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {

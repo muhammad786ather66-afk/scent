@@ -11,9 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/css/style.css" />
 
-    <!-- Theme Preference Initialization (Default: Light Mode) -->
+    <!-- Theme Preference Initialization (Guaranteed Light Mode on Website Open) -->
     <script>
-      (function(){try{if(localStorage.getItem('velora_theme_v2')===null){localStorage.removeItem('velora_theme');localStorage.setItem('velora_theme_v2','light');}var t=localStorage.getItem('velora_theme_v2')==='dark'?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+      (function(){try{localStorage.removeItem('velora_theme');localStorage.removeItem('velora_theme_v2');sessionStorage.removeItem('velora_theme');sessionStorage.removeItem('velora_theme_v2');}catch(e){}document.documentElement.setAttribute('data-theme','light');})();
     </script>
   </head>
   <body>

@@ -712,7 +712,7 @@ button, input, textarea, select {
   justify-content: center;
   padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 40%, #161a29 0%, var(--color-bg-deep) 75%);
+  background: var(--hero-bg);
 }
 
 .hero-grid {
@@ -912,7 +912,7 @@ button, input, textarea, select {
   aspect-ratio: 3 / 4;
   margin-bottom: 1.25rem;
   overflow: hidden;
-  background: radial-gradient(circle at center, #181c28 0%, #0c0d12 100%);
+  background: var(--visual-bg);
   border-radius: 2px;
   display: flex;
   align-items: center;
@@ -1165,7 +1165,7 @@ button, input, textarea, select {
 }
 
 .editorial-visual {
-  background: radial-gradient(circle at center, #151824 0%, #090b10 80%);
+  background: var(--visual-bg);
   border: 1px solid var(--color-border);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   border-radius: 4px;
@@ -1700,7 +1700,7 @@ button, input, textarea, select {
 
 .detail-visual-stage {
   position: relative;
-  background: radial-gradient(circle at center, #161a26 0%, #090a0e 80%);
+  background: var(--visual-bg);
   border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: clamp(1.5rem, 4vw, 3rem);
